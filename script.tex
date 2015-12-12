@@ -1,0 +1,31 @@
+\documentclass[german,a4paper,10pt]{scrreprt}
+\usepackage{fancyhdr}
+\usepackage[ngerman]{babel}
+\usepackage{graphicx}
+\usepackage{dsfont}
+\usepackage{amsthm}
+\usepackage{amsmath,amssymb}
+\usepackage{stmaryrd}
+\usepackage[utf8]{inputenc}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,shadows,arrows,automata,shapes,decorations.pathreplacing}
+
+
+\newcommand{\qq}[1]{``#1''}
+
+\title{Formale Sprachen}
+\author{Vorlesung: Michael Ludwig, Sebastian Schöner\\
+Mitschrieb: Jan-Peter Hohloch}
+\date{WS 15/16}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \newpage
+    \chapter{Einführung}
+        \input{intro.tex}
+    \chapter{Visibly Pushdown Languages (VPL)}
+        \input{vpl.tex}
+\end{document}

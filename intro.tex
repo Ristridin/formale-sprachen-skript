@@ -88,8 +88,8 @@
                     (NC) edge (TC)
                     (TC) edge (ACC)
                     (ACC) edge (AC);
-                \draw[decorate, decoration={brace, amplitude=10pt}] (3,.2) -- (3,-7.4);
-                \draw[decorate, decoration={brace, amplitude=10pt}] (3,-7.4) -- (3,-14.3);
+                \draw[decorate, decoration={brace, amplitude=10pt}] (3,.2) -- node[right,xshift=10pt]{TM} (3,-7.4) ;
+                \draw[decorate, decoration={brace, amplitude=10pt}] (3,-7.4) -- node[right,xshift=10pt]{Schaltkreis} (3,-14.3) ;
                 \draw[dashed] (-5,-7.4) -- (5,-7.4);
             \end{tikzpicture}
             \caption{Komplexitätsklassen}

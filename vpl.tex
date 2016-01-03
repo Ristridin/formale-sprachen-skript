@@ -191,3 +191,55 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
             $(*) A_1'\rightarrow aB_1\dots B_m$\\
             $A_1\Rightarrow_G^* a_1\dots a_kA_1'\dots A_n \overset{(*)}{\Rightarrow} a_1\dots a_kaB_1\dots B_m$\\
             $A_1\bar{A_1}\dots \mid A_n'\dots A_1'\leadsto A_n'\dots A_1'\bar{A_1'}B_m\dots B_1$
+%TODO: 2015-11-10
+    \section{TODO, 2015-11-10}
+    %TODO sectioning
+    \dots\\
+    Eindeutigkeit von $\hat{h}$:\\
+    D.h. falls $g:\Sigma^*\rightarrow T^*$ Homomorphismus mit $g(a)=\hat{h}(a)\forall a$, dann ist $g(w)=\hat{h}(w)\forall w\in\Sigma^*$
+    \subsubsection{Beweis}
+        durch Induktion über die Wortlänge $|w|$:
+        \begin{itemize}
+            \item[$|w|=0$:] $g(w)=\epsilon=\hat{h}(w)$
+            \item[$|w|=1$:] $g(a)=\hat{h}(a)\forall a$ nach Annahme
+            \item[$|w|>1$:] Für beliebige aber feste Wortlänge $n$ gelte $g(w)=\hat{h}(w)$.\\
+            \begin{math}
+            \begin{array}{lrl}
+                |w|=n+1:\ & w&=w'a \\
+                & g(w'a) &= g(w')g(a)\\
+                && \overset{IA}{=} \hat{h}(w')\hat{h(a)}\\
+                && = \hat{h}(w'a)\\
+                &&=\hat{h}(w)
+            \end{array}
+            \end{math}\\\hfill\qed
+        \end{itemize}
+    $L$ kontextfrei $\Rightarrow L=L(G),\ G$ in CNF:\\
+    $A\rightarrow a\leadsto h(a)\\ A\rightarrow BC$
+    \subsection{homomorphes Bild?}
+    Induktion über Ableitungen\\
+    \subsubsection{Inverser Homomorphismus}
+    am Beispiel endlicher Automaten\\
+    zu zeigen: Ist $L$ regulär, so auch $h^{-1}(L)$, $h: T^*\rightarrow \Sigma^*$\\
+    Sei $A$ ein endlicher Automat für $L$, $A=(Q,\Sigma,\delta,q_0,F)$\\
+    Baue Automat für $h^{-1}(L)$:\\
+    Bei Eingabe $W$ berechne $h(w)$ buchstabenweise und simuliere $A$. $B=(Q,T,\delta',q_0,F)$ mit $\delta'(t,q)=\hat{\delta}(h(t),q),\ t\in T,\ q\in Q$.\\
+    Funktioniert genauso für PDA und DPDA.
+    \subsection{Anmerkungen}
+    \begin{itemize}
+        \item Homomorphismus kann mit $h(\$)=\epsilon$ $w\$ w^R$ kaputt machen
+        \item nicht-löschender / $\epsilon$-freier Homomorphismus: $h(a)\not= \epsilon\ \forall a\in\Sigma$
+        \item lässt sich trotzdem zerstören: $h(\$)=a,\ a\in\Sigma\setminus\{\$\}$
+        \item $\mathds{D}_k$ sind VPL
+        \item VPL sind abgeschlossen unter $\cap$
+        \item reguläre Sprachen sind VPL
+        \begin{itemize}
+            \item Chomsky-Schützenberger
+            \item PDA auf $\Sigma$ $\leadsto$ PDA auf $(\Sigma_c,\Sigma_r,\Sigma_{int})$
+            \begin{itemize}
+                \item $h(a_c)=h(a_r)=h(a_{int})=h(a)$
+                \item $\Sigma_c=\{a_c\mid a\in\Sigma\}$
+                \item $\Sigma_r=\{a_r\mid a\in\Sigma\}$
+                \item $\Sigma_{int}=\{a_{int}\mid a\in\Sigma\}$
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}

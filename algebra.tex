@@ -1,0 +1,69 @@
+\section{Wiederholung}
+    \subsection{Eigenschaften}
+    Betrachte Menge $M$ und Verknüpfung $\circ: M\times M\rightarrow M$ ($\circ(m_1,m_2)=m_1\circ m_2$).\\
+    $(M,\circ)$ oder kurz $M$ kann verschiedene Eigenschaften haben:\\
+    \begin{tabular}{c|cccc}
+     & assoziativ & neutrales Element & inverse Elemente & kommutativ\\\hline
+     Halbgruppe & $\times$ & && ?\\
+     Monoid & $\times$ & $\times$ & & ?\\
+     Gruppe & $\times$ & $\times$ & $\times$ & ?\\
+     abelsche Gruppe & $\times$ & $\times$ & $\times$ &$\times$
+    \end{tabular}
+        \subsubsection{Beispiel}
+            \begin{itemize}
+                \item $(\mathds{N},\cdot,1)$ Monoid
+                \item $(\mathds{N},+,0)$ Monoid
+                \item $(\mathds{Z},+,0)$ Gruppe
+                \item $(2^X,\cap,X)$ kommutatives Monoid
+                \item $(\Sigma^*,\cdot,\epsilon)$ Monoid
+            \end{itemize}
+    \subsection{Multiplikationstabelle}
+    Sei $M$ endl. Halbgruppe: \begin{math}
+        \begin{array}
+            {c|ccc}
+            & m_1 & m_2 & \dots\\\hline
+            m_1 & m_1^2 & m_1m_2 &\\
+            m_2 & m_2m_1 & m_2^2 &\\
+            \vdots &
+        \end{array}
+    \end{math}
+    leicht ablesbar:
+    \begin{itemize}
+        \item existiert neutrales Element?
+        \item ex. 0-Element?
+        \item kommutativ?
+    \end{itemize}
+    \subsubsection{Beispiel}
+    $(\mathds{Z}/3\mathds{Z},+)\rightarrow (\mathds{Z}_3,+),\ +:\mathds{Z}^2\rightarrow \mathds{Z}_3:x+y\mapsto (x+y)\mod 3$\\
+    \begin{math}
+        \begin{array}
+            {c|ccc}
+            & \left[0\right] & \left[1\right] & \left[2\right]\\\hline
+            \left[0\right] & 0 & 1 & 2\\
+            \left[1\right] & 1 & 2 & 0\\
+            \left[2\right] & 2 & 0 & 1
+        \end{array}
+    \end{math}
+    \subsection{Homomorphismen}
+        Sei $\varphi: G\rightarrow H$ und $(G,\cdot),(H,\circ)$ Halbgruppen.\\
+        $\varphi$ ist Homomorphismus $\Leftrightarrow\forall x,y\in G: \varphi(x\cdot y)=\varphi(x)\circ\varphi(y)$ bei Monoiden: $\varphi(e_G)=e_H$\\
+        $\varphi$ heißt:
+        \begin{itemize}
+            \item injektiv $\Leftrightarrow\forall h\in H:|\varphi^{-1}(h)|\le 1$ (Monomorphismus, $\varphi: G \hookrightarrow H$)
+            \item surjektiv $\Leftrightarrow\forall h\in H:|\varphi^{-1}(h)|\ge 1$ (Epimorphismus, $\varphi: G\twoheadrightarrow H$)
+            \item bijektiv, $\Leftrightarrow\forall h\in H:|\varphi^{-1}(h)|= 1$ (Isomorphismus, $\varphi: G \overset{\sim}{=} H$)
+            \item $\varphi : G\rightarrow G$ (Endomorphismus)
+            \item bijektiver Endomorphismus heißt Automorphismus
+        \end{itemize}
+    \subsection{Relationen}
+        $\sim\subseteq X\times X$ ist Relation, $(x_1,x_2)\in\sim\Leftrightarrow : x_1\sim x_2$\\
+        $\sim$ reflexiv, symmetrisch, transitiv: Äquivalenzrelation\\
+        \indent$\Rightarrow \sim$ partitioniert $X$ in Äquivalenzklassen $X/\sim$\\
+        Sei $(H,\circ)$ eine Halbgruppe und $\sim\subseteq H\times H$. $\sim$ heißt verträglich mit $\circ$, wenn $a\sim b\wedge c\sim d\Rightarrow ac\sim bd$. $\sim$ ist damit eine Kongruenzrelation $\Rightarrow (H/\sim,\circ_\sim)$ ist Halbgruppe.\\
+        $\circ: H\times H\rightarrow H: a\circ b\mapsto c$\\
+        $\circ_\sim: H/\sim\times H/\sim\rightarrow H: [a]_\sim\circ [b]_\sim\mapsto [c]_\sim$
+        \subsubsection{Normalteiler}
+            $N<G$: N ist Untergruppe von G\\
+            $N\Delta G:\ $%TODO: rotate 90deg
+            N ist Normalteiler von G, d.h. $\forall g\in G : gN=Ng\ (\Leftrightarrow \forall g\in G : gNg^{-1}=N$)\\
+            Normalteiler und Kongruenzrelation stehen n 1-zu-1-Zusammenhang: Nebenklassen $\leftrightarrow$ Äquivalenzklassen; z.B. $\mathds{Z}/n\mathds{Z}$

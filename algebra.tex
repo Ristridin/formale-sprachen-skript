@@ -82,3 +82,55 @@
                 \item $\left(\left(\Sigma\cup\bar{\Sigma}\right)^*,\cdot \right)/_{a\bar{a}=1}\cong F(\Sigma)$ (freie Gruppe über $\Sigma$)
                 \item $F(\Sigma)/_{xy=yx}$ ist freie abelsche Gruppe
             \end{itemize}
+\section{Spracherkennung durch Monoide}
+    Sei $l\subseteq\Sigma^*,\ M$ Monoid und $\varphi:\Sigma^*\rightarrow M$ Homomorphismus. $L$ wird von $M$ erkannt (mit $\varphi$) $\Leftrightarrow \varphi^{-1}\left(\varphi(L)\right)=L$\\
+    äquivalent: $\exists X\subseteq M: \varphi^{-1}(X)=L$
+    \subsubsection{Beispiele}
+        \begin{itemize}
+            \item $L=\Sigmas$ wird von $\{1\}$ mit $\varphi:x\mapsto 1$ erkannt.
+            \item $L=\{w\in\Sigma\mid |w|\equiv 0\pmod 2\}$ wird von $\mathds{Z}/2\mathds{Z}$ erkannt
+            \begin{itemize}
+                \item $\varphi(a)=[1]$, also $L=\varphi^{1}([0])$
+                \item $\varphi(\epsilon)=[0]$
+                \item das ginge mit jedem $\mathds{Z}/n\mathds{Z}$ mit $n$ gerade
+            \end{itemize}
+            \item $\Sigmas$ erkennt $L$ beliebig mit $\varphi=id$
+            \begin{itemize}
+                \item unendliche Monoide können ``zu viel''
+                \item Konzept nur für endliche Monoide interessant
+                \item[$\rightarrow$] Ziel: für Sprache $L$ kleinstes erkennendes Monoid finden
+            \end{itemize}
+        \end{itemize}
+    \subsection{Das syntaktische Monoid}
+        \subsubsection{Kongruenzrelation}
+            Myhill-Nerode-Äquivalenz:
+            \begin{itemize}
+                \item $x\sim^L_L y\Leftrightarrow\forall z:xz\in L\Leftrightarrow yz\in L$
+                \item $x\sim^R_L y\Leftrightarrow\forall z:zx\in L\Leftrightarrow zy\in L$
+                \item[$\rightarrow$] $\sim^L_L,\ \sim^R_L$ sind keine Kongruenzrelation
+            \end{itemize}
+            für Kongruenzrelation muss gelten:
+            $$u\sim v\wedge w\sim x\Rightarrow uw\sim vx$$
+            \textbf{Beispiel:}
+            \begin{itemize}
+                \item $L=ac^+bc^+$
+                \item Wähle $u=v=a,\ w=b,\ x=c$
+                \item $uw=ab\not\sim vx=ac$
+            \end{itemize}
+        \subsubsection{Syntaktische Kongruenz}
+            $x\sim_L y :\Leftrightarrow \forall u,v\in\Sigmas:uxv\in L\Leftrightarrow uyv\in L$ es ist $x\sim_L y\Leftrightarrow x\sim_L^L y\wedge x\sim_L^R y$
+        \subsubsection{Syntaktisches Monoid}
+            Sei $L\subseteq\Sigmas$, dann ist $Synt(L):=\Sigmas/\sim_L$ das syntaktische Monoid\\
+            $\eta_L:\Sigmas\rightarrow Synt(L),\ w\mapsto[w]$ heißt syntaktischer Morphismus
+            \begin{itemize}
+                \item[\underline{Satz:}] $L$ reg $\Leftrightarrow Synt(L)$ endlich
+                \item[\underline{Satz:}] $Synt(L)$ erkennt $L$ mittels $\eta_L$
+                \item[\underline{Def.:}] $N\prec M :\Leftrightarrow \exists M'<M\exists\psi:M'\twoheadrightarrow N$. ``$N$ teilt $M$''
+                \item[\underline{Satz:}] $M$ erkennt $L\Leftrightarrow Synt(L)\prec M$
+            \end{itemize}
+            \begin{enumerate}[1)]
+                \item $\varphi:M\rightarrow M$ Endomorphismus und Epimorphismus $\Leftrightarrow \varphi$ Monomorphismus, falls $|M|<\infty$
+                \item $Synt(L)$ erkennt $L$
+                \item $\prec$ ist transitiv
+                \item $Synt(L_1\cap L_2)\prec Synt(L_1)\times Synt(L_2)$
+            \end{enumerate}

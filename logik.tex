@@ -1,0 +1,99 @@
+Wir betrachten logische Formeln, die auf Wörtern operieren.\\
+Sei $w\in\Sigmas$ und $\varphi$ logische Formel:\\
+$w\models \varphi$, wenn $w$ Modell für $\varphi$, also $\varphi$ wahr unter $w$.
+\section{Beispiel}
+    \begin{itemize}
+        \item $\varphi_1=\exists x\exists y( \underbrace{\forall z (z\geq x)}_{x=1}\wedge Q_ax\wedge \underbrace{\forall z(z\leq y)}_{y=|w|}\wedge Q_by),\ x,y,z\in\{1,\dots,|w|\}$
+        \begin{itemize}
+            \item $L(\varphi_1)=a\Sigmas b$
+            \item Quantifizierung erster Ordnung
+            \item Variablen: Positionen im Wort
+            \item Prädikate: $<,\ Q_a,\ Q_b$; $Q_ax$ wahr $\Leftrightarrow a$ an Stelle $x$
+            \item alle Variablen müssen gebunden sein
+        \end{itemize}
+        \item $\varphi_2=\exists X\left(\forall z(z\geq x)\Rightarrow X(x)\right)\wedge \forall x\left(\forall z(z\leq x)\Rightarrow \neg X(x)\right)\wedge\\\hspace*{1.2cm} \forall x\forall y\left(\left((x<y)\wedge\forall z (z>x\Rightarrow z\geq y)\right)\Rightarrow\left(X(x)\Leftrightarrow \neg X(y)\right)\right)$
+        \begin{itemize}
+            \item $L(\varphi_2)=\left(\Sigma^2\right)^*$
+            \item $\exists X$ ist Quantor zweiter Ordnung
+            \item $X$ ist einstelliges Prädikat, d.h. monadisch
+            \item $X$ beschreibt Menge von Positionen im Wort
+            \item erste Zeile: erste Position im Wort in $X$, letzte nicht
+            \item zweite Zeile: benachbarte Position $\Rightarrow$ genau eine in $X$
+        \end{itemize}
+    \end{itemize}
+    \subsection{Anmerkungen}
+        \begin{itemize}
+            \item $x=y\equiv x\le y\wedge y\le x$
+            \item $x<y\equiv x\le y\wedge \neg(x=y)$
+            \item $x+1=y\equiv x<y\wedge\forall z(z>x\Rightarrow z\geq y)$
+            \item aber $\leq$ nicht durch $+1$ simulierbar in $FO$ (aber $MSO[+1]=MSO[<]$)
+            \item auch definierbar: $first(x),\ last(x),\ X\subseteq Y$, uvm.
+        \end{itemize}
+\section{Definition}
+    \begin{itemize}
+        \item atomare Formeln sind bei und Prädikate $R_i^j\subseteq D^j$
+        \item $D$ ist Domäne, also Menge aller Wortpositionen
+        \item $R_i^j(x_1,\dots,x_j)$ ist atomare Formel (mit freien Variablen)
+        \item Sind $\varphi_1,\varphi_2$ Formeln, so auch $\varphi_1\wedge\varphi_2$ und $\neg \varphi_1$
+        \item Ist $\varphi$ Formel, so auch $\exists x\varphi$ und $\exists X\varphi$
+    \end{itemize}
+\section{Notation}
+    Die Notation ist abhängig davon, welche ``Bausteine'' eine Formel verwendet. Beispielsweise:
+    $FO[<]$: Quantifizierung erster Ordnung und $<$-Prädikat ($Q_a$ Quantor immer gegeben)\\
+    \subsection{Anmerkungen}
+        \begin{itemize}
+            \item $FO[+1]\subsetneq FO[<]$
+            \item $MSO[+1]=MSO[<]=MSO$ ``monadic second order''
+            \item $FO+MOD[<]$: $MOD_k:$ Durch $k$ teilbare Zahl (von `a's) $MOD_kxQ_ax$
+            \item $FO[+]:$ $x+y=z$
+        \end{itemize}
+\section{Logik auf Worten}
+    \subsection{Semantik}
+        \subsubsection{Definition}
+            Sei $\Sigma$ ein Alphabet, $V_1$ eine Menge von $FO$-Variablen und $V_2$ von $MSO$-Variablen.\\
+            Eine $V_1V_2$-Struktur ist ein Wort über $\Sigma\times\mathcal{P}\left(V_1\right)\times\mathcal{P}\left(V_2\right)$,\\ d.h. $w=\left(a_1,X_1,Y_1\right),\left(a_2,X_2,Y_2\right),\dots,\left(a_n,X_n,Y_n\right)$\\
+            mit:\begin{enumerate}
+                \item $X_i\cap X_j=\emptyset$ falls $i\not=j$
+                \item $\bigcup\limits_{i=1}^nX_i=V_1$
+            \end{enumerate}
+        \subsubsection{Definition}
+            Sei $\varphi$ eine $MSO$-Formel in der keine Variable mehrfach gebunden wird mit freien Variablen $V_1,\ V_2$.\\
+            Die \underline{Modellrelation} $\models$ zwischen $\varphi$ und $\left(V_1,V_2\right)$-Strukturen ist induktiv. Im Folgenden sei $w=\left(a_1,X_1,Y_1\right),\left(a_2,X_2,Y_2\right),\dots,\left(a_n,X_n,Y_n\right)$ eine $\left(V_1,V_2\right)$-Struktur.
+            \begin{itemize}
+                \item $w\models Q_ax$, falls es ein $1\le i\le n$ gibt mit $a_i=a$ und $x\in X_i$
+                \item $w\models X(x)$, falls es ein $1\le i\le n$ gibt mit $x\in X_i$ und $X\in Y_i$
+                \item $w\models P(x_1,\dots,x_m)$ für ein $m$-äres Prädikat, falls es $i_1,\dots,i_m$ gibt mit $x_j\in X_{ij}$ und $(i_1,\dots,i_m)\in P$
+                \item $w\models\neg\psi$ falls $w\not\models\psi$
+                \item $w\models\psi_1\wedge\psi_2$ falls $w\models\psi_1\wedge w\models\psi_2$
+                \item $w\models\exists x:\psi$ falls ein $1\le i\le n$, sodass die $(V_1\cup \{x\},V_2)$-Struktur $$w'=(a_1,X_1,Y_1)\dots (a_i,X_i\cup\{x\},Y_i)\dots(a_n,X_n,Y_n)$$ $w'\models\psi$ erfüllt.
+                \item $w\models\exists X:\psi$, falls es eine Menge $M\subseteq\{1,\dots,n\}$ gibt, sodass $(V_1,V_2\cup\{X\})$-Struktur\\$w'=(a_1,X_1,Y_1)\dots (a_i,X_i\cup\{x\},Y_i)\dots(a_n,X_n,Y_n)$ mit $Y_i=\begin{cases}
+                    Y_i & \text{falls }i\not\in M\\
+                    Y_i\cup\{X\} & \text{sonst}
+                \end{cases}$
+            \end{itemize}
+        \subsubsection{Bemerkung}
+            Falls wir und mit einer $FO$-Formel befassen, verwenden wir V-Strukturen, d.h. Worte über $\Sigma\times\mathcal{P}(V)$. $MSO$-Formeln ohne freie Variablen ($MSO$-Sätze) besitzen also $(\emptyset,\emptyset)$-Strukturen, also Wörter, als Modelle.
+        \subsubsection{Definition}
+            Sei $\varphi$ ein $MSO$-Satz. Die von $\varphi$ definierte Sprache ist $L_\varphi=\{w\in\Sigmas\mid w\models\varphi\}$
+    \section{Rückblick (FS1)}
+        \subsection{Ergebnisse}
+            Es wurde gezeigt: \begin{itemize}
+                \item $FO[<]=SF$
+                \item $MSO[+1]=REG$
+            \end{itemize}
+        \subsubsection{Beispiel}
+            \begin{itemize}
+                \item $FO[<]:$
+                \begin{itemize}
+                    \item $\forall x:\left(Q_ax\Rightarrow\exists y:Q_by\wedge x<y\right)$
+                    \item $\forall x:Q_ax\Rightarrow\forall y:Q_by$ ($\Sigmas\setminus a^*$)
+                    \item $\exists x\forall y:x<y\Rightarrow Q_ay$ ($\Sigmas$)
+                \end{itemize}
+                \item $MSO[<]=MSO[+1]$
+                \begin{itemize}
+                    \item $x<y\equiv \exists Z:(y\in Z\wedge x\not\in Z\wedge \forall z:(z\in Z\Rightarrow\exists w:w\in Z\wedge z+1=w))$
+                    \item $x\le y\equiv \forall z: z< x\Rightarrow z< y$
+                    \item $fst(x)\equiv \forall y: x\le y$, $lst(x)\equiv \forall y: y\le x$
+                    \item $\exists M\exists x\left(fst(x)\wedge x\in M\wedge\forall z:\left(z\in M\Leftrightarrow\left(\forall w:(w=z+1\Rightarrow w\not\in M)\right)\right)\right)\wedge \exists y(lst(y)\wedge y\not\in M)$ (gerade Länge)
+                \end{itemize}
+            \end{itemize}

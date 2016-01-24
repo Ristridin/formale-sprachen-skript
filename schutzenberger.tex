@@ -1,2 +1,69 @@
 \section{Satz}
-    Eine Sprache $L$ ist genau dann sternfrei, wenn $L$ von einem aperiodischen Monoid erkannt wird (bzw. $Synt(L)$)
+    Eine Sprache $L$ ist genau dann sternfrei, wenn $L$ von einem aperiodischen Monoid erkannt wird (bzw. $Synt(L)$ ist aperiodisch).
+\section{Definition}
+    Sei $M$ Monoid. $R\subseteq M$ ist
+    \begin{itemize}
+        \item Rechts-ideal, falls $RM=R$
+        \item Links-ideal, falls $MR=R$
+        \item Ideal, falls $MRM=R$
+    \end{itemize}
+    \subsection{Beispiel}
+        \begin{itemize}
+            \item für jedes Monoid $M$ sind $M$ und $\emptyset$ Ideale
+            \item für $M=\Sigmas$ mit $a\in\Sigmas$ ist $\Sigmas a\Sigmas$ ein Ideal, $a\Sigmas$ ein Rechtsideal und $\Sigmas a$ ein Linksideal.
+        \end{itemize}
+\section{Definition: Green'sche Relationen}
+    Wir definieren die sogenannten Green'schen Relationen auf $M$ via:
+    \begin{itemize}
+        \item $\le_R b\Leftrightarrow aM\subseteq bM$
+        \item $a\le_L b\Leftrightarrow Ma\subseteq Mb$
+        \item $aIb\Leftrightarrow MaM=MbM$
+        \item $aRb\Leftrightarrow aM=bM$
+        \item $aLb\Leftrightarrow Ma=Mb$
+    \end{itemize}
+    \subsection{Lemma}
+        \label{sub:sch-lemma-1}
+        Sei $M$ aperiodisch und $p,q,r\in M$ mit $pqr=q$, dann ist auch $pq=qr=q$ (Bew. ÜB)
+    \subsection{Lemma}
+        Sei $M$ aperiodisch und $a,b\in M$ mit $aIb$. Dann gilt:
+        \begin{enumerate}
+            \item $a\le_R b\Rightarrow aRb$
+            \item $a\le_L b\Rightarrow aLb$
+        \end{enumerate}
+        \subsubsection{Beweis}
+            Da $MaM=MbM$ gilt, gibt es $u,v\in M$ mit $b=uav$.
+            \begin{enumerate}
+                \item Wegen $aM\subseteq bM$ gibt es $p\in M$ mit $a=bp$. Also $b=uav=ubpv$, nach Lemma~\ref{sub:sch-lemma-1} ist also $ub=b$.
+                Damit ist $b=bpv$, also $bM=bpvM\subseteq bpM\subseteq aM$. Also $bM=aM$, somit $aRb$
+                \item symmetrisch
+            \end{enumerate}
+    \subsection{Lemma}
+        Sei $M$ aperiodisches Monoid und $p\in M$. Dann ist $\{p\}=(Mp\cap pM)\setminus J_p$ mit $J_p=\{s\in M\mid p\not\in MsM\}$
+        \subsubsection{Beweis}
+            \begin{itemize}
+                \item[$\subseteq$] klar ($1\in M$)
+                \item[$\supseteq$] Sei $x\in (Mp\cap pM)\setminus J_p$.\\
+                Dann gibt es $q,r\in M$ mit $pq=x=rp$. Da $x\not in J_p$, ist $p=uxv$ für $u,v\in M$.\\
+                Damit: $$p=uxv=(ur)p(v)=urp=ux=upq=pq=x\Rightarrow x\in\{p\}$$\qed
+            \end{itemize}
+\section{Beweis zum Satz von Schützenberger}
+    zu zeigen: ist $Synt(L)$ aperiodisch, so ist $L$ sternfrei.\\
+    $Synt(L)$ endlich, da $L\in \textsc{Reg}$
+    Sei $\varphi:\Sigmas\rightarrow M=Synt(L)$ ein Monomorphismus mit $M$ aperiodisch. Da $\varphi\ L$ erkennt, existiert eine endliche Teilmenge $P\subseteq M$ mit $\varphi^{-1}(P)=\bigcup\limits_{m\in P}\varphi^{-1}(m)=M$. Wir zeigen $\varphi^{-1}(\{m\})$ ist sternfrei $\forall m\in M$:\\
+    Induktion über $r(m)=|M\setminus MmM|$:
+    \begin{itemize}
+        \item[$r(m)=0$:] Dann ist $M=MmM$ (Differenz leer, abgeschlossen). Damit gibt es $p,q\in M$ mit $1=pmq=pm1q=pm=p1m=m$. Folglich: $\varphi^{-1}(m)=\varphi^{-1}(1)\overset{(*)}{=}\{a\in\Sigma\mid\varphi(a)=1\}^*$, denn ist $w\in \Sigmas$ mit $|w|>1$ und $w=ua,\ a\in \Sigma$, dann ist $$\varphi(w)=\varphi(ua)=1\Leftrightarrow \varphi(u)\varphi(a)=1\Leftrightarrow \varphi(u)1\varphi(a)=1\Leftrightarrow \varphi(u)=1\wedge \varphi(a)=1$$
+        $(*)$ folgt durch Induktion.\\
+        Ist $B\subseteq \Sigma$, so ist $B^*$ sternfrei: $B^*=\overline{\overline{\emptyset}\overline{B}\overline{\emptyset}}$. Damit ist $\varphi^{-1}(m)$ sternfrei.
+        \item[$r(m)>0$:] Wir zeigen: $\varphi^{-1}(m)=(U\Sigmas\cap \Sigmas V)\setminus(\Sigmas C\Sigmas\cup \Sigmas W\Sigmas)=K$ mit:
+        \begin{itemize}
+            \item $U=\bigcup\limits_{n,a)\in E} \varphi^{-1}(n)a\Sigmas$
+            \item $V=\bigcup\limits_{n,a)\in F} \Sigmas a\varphi^{-1}(n)$
+            \item $C=\{a\in\Sigma\mid m\not\in M\varphi(a)M\}$
+            \item $W=\bigcup\limits_{(a,n,b)\in G}\Sigmas a\varphi^{-1}(n)b\Sigmas$
+            \item $E=\{(n,a)\in M\times \Sigma\mid n\varphi(a)Rm,\ n\not\in mM\}$
+            \item $F=\{(n,a)\in M\times \Sigma\mid \varphi(a)nLm,\ n\not\in Mm\}$
+            \item $G=\{(a,n,b)\in \Sigma\times M\times \Sigma\mid m\in \left(M\varphi(a)nM\cap Mn\varphi(b)M\right)\setminus M\varphi(a)n\varphi(b)M\}$
+        \end{itemize}
+        Dann ist nur noch zu zeigen, dass $U,V,W,C$ sternfrei.
+    \end{itemize}

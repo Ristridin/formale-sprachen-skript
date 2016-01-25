@@ -25,6 +25,7 @@
         \label{sub:sch-lemma-1}
         Sei $M$ aperiodisch und $p,q,r\in M$ mit $pqr=q$, dann ist auch $pq=qr=q$ (Bew. ÜB)
     \subsection{Lemma}
+        \label{sub:sch-lemma-2}
         Sei $M$ aperiodisch und $a,b\in M$ mit $aIb$. Dann gilt:
         \begin{enumerate}
             \item $a\le_R b\Rightarrow aRb$
@@ -38,6 +39,7 @@
                 \item symmetrisch
             \end{enumerate}
     \subsection{Lemma}
+        \label{sub:sch-lemma-3}
         Sei $M$ aperiodisches Monoid und $p\in M$. Dann ist $\{p\}=(Mp\cap pM)\setminus J_p$ mit $J_p=\{s\in M\mid p\not\in MsM\}$
         \subsubsection{Beweis}
             \begin{itemize}
@@ -66,4 +68,57 @@
             \item $G=\{(a,n,b)\in \Sigma\times M\times \Sigma\mid m\in \left(M\varphi(a)nM\cap Mn\varphi(b)M\right)\setminus M\varphi(a)n\varphi(b)M\}$
         \end{itemize}
         Dann ist nur noch zu zeigen, dass $U,V,W,C$ sternfrei.
+        \begin{itemize}
+            \item[$\varphi^{-1}(m)\subseteq K$] Wir nehmen an $m\not=1$ (sonst $r(m)=0$). Sei $u\in\varphi^{-1}(m)$ und $p\in\Sigmas$ sei das kürzeste Präfix von $u$ mit $\varphi(p)Rm$.\\
+            Da $\varphi(u)=m$ ist, muss es ein solches $p$ geben.
+            \begin{itemize}
+                \item Falls $p=\epsilon$, ist $1Rm$ also $M=mM$ und damit $m=1\ \lightning$ $\Rightarrow p\not=\epsilon$
+                \item Falls $p=ra$, $a\in\Sigma,\ r\in\Sigmas$:\\
+                Setze $n=\varphi(r)$. Dann ist $\varphi(p)=n\varphi(a)Rm$ aber nicht $nRm$ also $(n,a)\in E$ und somit $u\in U\Sigmas$
+                \item Analog für $u\in\Sigmas V$
+            \end{itemize}
+            Es bleibt zu zeigen, dass $u\not\in \Sigmas C\Sigmas\cup \Sigmas W\Sigmas$.
+            \begin{itemize}
+                \item Angenommen $u\in\Sigmas C\Sigmas$, dann ist $u=sct$ mit $s,t\in\Sigmas,\ c\in C$. Aber: $m=\varphi(u)\in M\varphi(c)M$ im Widerspruch zu $c\in C \Rightarrow u\not\in \Sigmas C\Sigmas$
+                \item  Angenommen $u\in\Sigmas W\Sigmas$, dann ist $u\in\Sigmas a\varphi^{-1}(n)b\Sigmas$ für ein $(a,n,b)\in G$.\\
+            Damit ist $m=\varphi(u)\in M \varphi(a)n\varphi(b)M$ im Widerspruch zu $(a,n,b)\in G\ \lightning$ $\Rightarrow u\not\in\Sigmas W\Sigmas$
+            \end{itemize}
+            $\Rightarrow \varphi^{-1}(m)\subseteq K$
+            \item[$K\subseteq\varphi^{-1}(m)$] Sei $u\in K$ und $s=\varphi(U)$. Da $u\in U\Sigmas$, ist $s\in n\varphi(s)M$ für ein $(n,a)\in E$. Also $n\varphi(a)Rm$, damit $s\in mM$.\\
+            Analog $u\in\Sigmas V\Rightarrow s\in Mm$.\\
+            Also $s\in mM\cap Mm$.\\
+            Es gilt: $m\in MsM\Leftrightarrow s\not\in J_m$ (Definition in Lemma~\ref{sub:sch-lemma-3}) und mit dem Lemma folgt $s\in(mM\cap Mm)\setminus J_m=\{m\}$\\
+            Also genügt zu zeigen $m\in MsM$.\\
+            Angenommen $m\not\in MsM$.\\
+            Dann gibt es $f\in\Sigmas$ minimal mit $s=vfw$ und $m\not\in M\varphi(f)M,\ v,w\in\Sigmas$
+            \begin{itemize}
+                \item Falls $f=\epsilon$ $\Rightarrow m\not\in M\ \lightning$
+                \item Falls $f=a,a\in \Sigma$ $\Rightarrow a\in C\Rightarrow u\in\Sigmas C\Sigmas\Rightarrow u\not\in K\ \lightning$
+                \item Falls $f=agb$ mit $a,b\in\Sigma,\ g\in\Sigmas$; setze $x=\varphi(g)$. Dann ist $\varphi(f)=\varphi(a)x\varphi(b)$ und $u\in M\varphi(a)xM\cap Mx\varphi(b)M$, da $f$ minimal. Also $(a,x,b)\in G$, damit $f\in W$ und $u \in\Sigmas W\Sigmas$ $\Rightarrow u\not\in K\ \lightning$
+            \end{itemize}
+            $\Rightarrow m\in MsM$, letztlich $K\subseteq \varphi^{-1}(m)$
+        \end{itemize}
+        \begin{itemize}
+            \item $u,V,W,C$ sternfrei
+            \begin{itemize}
+                \item $C$ sternfrei, klar da endlich
+                \item zu $U$ ($V$ analog):\\
+                    $(n,a)\in E\Rightarrow n\varphi(a)Rm \Rightarrow Mn\varphi(a)M=MmM\subseteq MnM\\\Rightarrow r(n)\le r(m)$
+                    \begin{itemize}
+                        \item Ist $r(n)=r(m)$, so $MmM=MnM$, damit $mIn$. Da $mM=n\varphi(a)M\subseteq nM$, also $m\le_R n$, folgt mit Lemma~\ref{sub:sch-lemma-2} $nRm$, insbesondere $n\in mM\ \lightning$
+                        \item Also $r(n)<r(m)$\\
+                        $IV$: $\varphi^{-1}(n)$ ist sternfrei.\\
+                        $\Rightarrow U$ ist sternfrei.
+                    \end{itemize}
+                \item zu $W$:\\
+                    Sei $(a,n,b)\in G$. Dann ist $m\in M\varphi(a)nM\subseteq MnM$\\
+                    $r(n)\le r(m)$
+                    \begin{itemize}
+                        \item Angenommen $r(n)=r(m)$. Dann ist $MnM=MmM$ also insbesondere $n\in MmM$. Da $m\in Mn\varphi(b) M$ ist dann auch $n\in Mn\varphi(b)M$ also $n=rn\varphi(b)s=n\varphi(b)s,\ r,s\in M$.\\
+                        Analog $m\in M\varphi(a)nM\Rightarrow n=x\varphi(a)ny\Rightarrow n=x\varphi(a)n\varphi(b)sy\in M\varphi(a)n\varphi(b)M\ \lightning$ (Widerspruch zu $(a,n,b)\in G$)
+                        \item[$\Rightarrow$] $r(n)<r(m)$
+                    \end{itemize}
+                    $IV:$ $\varphi^{-1}(n)$ sternfrei, damit $W$ sternfrei\qed
+            \end{itemize}
+        \end{itemize}
     \end{itemize}

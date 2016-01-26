@@ -7,43 +7,44 @@
         \item Verbindungen (DAG)
     \end{itemize}
     \subsection{Beispiel}
-        $x_1x_2x_3\in\{0,1\}$, $L=0^*10^*$\\
+        $x_1,x_2,x_3\in\{0,1\}$, $L=0^*10^*$\\
         \begin{tikzpicture}[label distance=2mm, minimum size=5mm]
             \node (x1) at (0,4) {$x_1$};
             \node (x2) at (0,2) {$x_2$};
             \node (x3) at (0,0) {$x_3$};
 
-            \node[not gate IEC, draw] at ($(x1)+(1,1)$) (Not1){};
-            \node[not gate IEC, draw] at ($(x2)+(1,1)$) (Not2){};
-            \node[not gate IEC, draw] at ($(x3)+(1,1)$) (Not3){};
-
-            \node[or gate IEC,draw] at ($(x1)+(4,0)$) (Or1){};
-            \node[or gate IEC,draw] at ($(x2)+(4,0.09)$) (Or2){};
-
-            \node[and gate IEC,draw,minimum size=1cm,logic gate IEC symbol align={center}] at ($(x2)+(8,+0.121)$) (And) {};
+            \node[or gate IEC,draw,minimum size=1cm,logic gate IEC symbol align={center}] at ($(x2)+(8,0)$) (Or) {};
 
             \foreach \i in {1,2,3}
             {
+                \node[not gate IEC, draw] at ($(x\i)+(1,1)$) (Not\i){};
+
+                \node[and gate IEC, draw, minimum size=7mm,logic gate IEC symbol align={center}] at ($(x\i)+(4,0)$) (And\i){};
+
                 \draw (x\i) -- coordinate (punt\i) (x\i -| Not\i.input);
                 \draw (punt\i) node[branch] {} |- (Not\i.input);
+
+                \draw (x\i) -- (And\i);
+                \draw (And\i) -- ($(And\i)+(\i*0.5,0)$);
+
+                \draw (Not\i.output) -- ($(Not\i.output)+(\i*0.5,0)$) coordinate (nn\i) ;
             }
 
-            \draw (x1) -- ($(punt1)+(0.5,0)$);
-            \draw (Not2.output) -- ($(Not2.output)+(0.2,0)$);
-            \draw (Not1.output) -- ($(Not1.output)+(0.5,0)$);
-            \draw ($(Not1.output)+(0.5,0)$) |- (Or1.input 1);
-            \draw (x3) -- ($(x3)+(2.5,0)$);
-            \draw ($(x3)+(2.5,0)$) |- (Or1.input 2);
-            \draw ($(punt2)+(0.2,0)$) |- (Or2.input 2);
-            \draw ($(Or2.input 1)+(-1.1,0)$) node[branch]{} -- (Or2.input 1);
+            \draw ($(And1)+(0.5,0)$) |- (Or.input 1);
+            \draw (And2) -- (Or);
+            \draw ($(And3)+(3*0.5,0)$) |- (Or.input 2);
 
-            \draw (Not3.output) -- ($(Not3.output)+(4,0)$);
-            \draw ($(Not3.output)+(4,0)$) |- ($(And.input 2)+(0,-0.2)$);
-            \draw (Or2.output) -- ($(And.input 1)+(0,-0.2)$);
-            \draw (Or1.output) -- ($(Or1.output)+(0.5,0)$);
-            \draw ($(Or1.output)+(0.5,0)$) |- ($(And.input 1)+(0,0.2)$);
+            \node[branch] at (nn2){};
+
+            \draw (nn1) |- node[branch] {} (And2.input 1);
+            \draw (nn1) |- (And3.input 1);
+            \draw (nn2) |- (And1.input 1);
+            \draw (nn2) |- (And3.input 2);
+            \draw (nn3) |- (And1.input 2);
+            \draw (nn3) |- node[branch] {} (And2.input 2);
+
+            \draw (Or.output) -- ($(Or.output)+(0.5,0)$);
         \end{tikzpicture}
-        %TODO: Was this the idea?
     \subsection{Anmerkungen, Schaltkreisfamilien}
         Mögliche Gatter: $AND,\ OR,\ MOD,\ MAJ,\ \dots$\\
         Für Spracherkennung: Schaltkreise für verschiedene Eingabelängen $\rightarrow$ Schaltkreisfamilien $\left(C_n\right)_{n\in\mathds{N}}$\\

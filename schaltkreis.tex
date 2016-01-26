@@ -1,0 +1,81 @@
+\section{Schaltkreise}
+    Schaltkreise bestehen aus:
+    \begin{itemize}
+        \item Eingangsgatter
+        \item Ausgänge
+        \item Gatter
+        \item Verbindungen (DAG)
+    \end{itemize}
+    \subsection{Beispiel}
+        $x_1x_2x_3\in\{0,1\}$, $L=0^*10^*$\\
+        \begin{tikzpicture}[label distance=2mm, minimum size=5mm]
+            \node (x1) at (0,4) {$x_1$};
+            \node (x2) at (0,2) {$x_2$};
+            \node (x3) at (0,0) {$x_3$};
+
+            \node[not gate IEC, draw] at ($(x1)+(1,1)$) (Not1){};
+            \node[not gate IEC, draw] at ($(x2)+(1,1)$) (Not2){};
+            \node[not gate IEC, draw] at ($(x3)+(1,1)$) (Not3){};
+
+            \node[or gate IEC,draw] at ($(x1)+(4,0)$) (Or1){};
+            \node[or gate IEC,draw] at ($(x2)+(4,0.09)$) (Or2){};
+
+            \node[and gate IEC,draw,minimum size=1cm,logic gate IEC symbol align={center}] at ($(x2)+(8,+0.121)$) (And) {};
+
+            \foreach \i in {1,2,3}
+            {
+                \draw (x\i) -- coordinate (punt\i) (x\i -| Not\i.input);
+                \draw (punt\i) node[branch] {} |- (Not\i.input);
+            }
+
+            \draw (x1) -- ($(punt1)+(0.5,0)$);
+            \draw (Not2.output) -- ($(Not2.output)+(0.2,0)$);
+            \draw (Not1.output) -- ($(Not1.output)+(0.5,0)$);
+            \draw ($(Not1.output)+(0.5,0)$) |- (Or1.input 1);
+            \draw (x3) -- ($(x3)+(2.5,0)$);
+            \draw ($(x3)+(2.5,0)$) |- (Or1.input 2);
+            \draw ($(punt2)+(0.2,0)$) |- (Or2.input 2);
+            \draw ($(Or2.input 1)+(-1.1,0)$) node[branch]{} -- (Or2.input 1);
+
+            \draw (Not3.output) -- ($(Not3.output)+(4,0)$);
+            \draw ($(Not3.output)+(4,0)$) |- ($(And.input 2)+(0,-0.2)$);
+            \draw (Or2.output) -- ($(And.input 1)+(0,-0.2)$);
+            \draw (Or1.output) -- ($(Or1.output)+(0.5,0)$);
+            \draw ($(Or1.output)+(0.5,0)$) |- ($(And.input 1)+(0,0.2)$);
+        \end{tikzpicture}
+        %TODO: Was this the idea?
+    \subsection{Anmerkungen, Schaltkreisfamilien}
+        Mögliche Gatter: $AND,\ OR,\ MOD,\ MAJ,\ \dots$\\
+        Für Spracherkennung: Schaltkreise für verschiedene Eingabelängen $\rightarrow$ Schaltkreisfamilien $\left(C_n\right)_{n\in\mathds{N}}$\\
+        Bsp. leicht zu Familie erweiterbar.
+        \subsubsection{Problematik}
+            Schaltkreisfamilien können beispielsweise unäres Halteproblem entscheiden\\$\rightarrow$ Uniformität: Es existiert Algorithmus, der auf Eingabe $n$ den Schaltkreis $C_n$ berechnet. (z.B. $DLOGTIME$-uniform)
+\section{Schaltkreise als Alternative zu Turingmaschinen}
+    Komplexitätsmaße bei TM: Zeit, Platz
+    Komplexitätsmaße bei Schaltkreisen: Größe, Tiefe, Gatter, Fan-in, Uniformität
+    \subsection{Klassen}
+        \subsubsection{NC}
+            $NC^i$: polynomiell viele Gatter, $\mathcal{O}\left(\log^i(n)\right)$ Tiefe, Fan-in=2, Bool'sche Gatter\\
+            $NC$: $\bigcup\limits_i NC^i$
+        \subsubsection{AC}
+            $AC^i$: wie $NC^i$ nur unbeschränkter Fan-in\\
+            $AC:\ \bigcup\limits_i AC^i$
+        \subsubsection{ACC}
+            $ACC^i_k$: Wie $AC^i$ nur mit $MOD_k$-Gatter zusätzlich\\
+            $ACC^i$: $\bigcup\limits_k ACC^i_k$
+        \subsubsection{TC}
+            $TC^i$: wie $AC^i$, ausschließlich $MAJ$-Gatter\\
+            $TC:\ \bigcup\limits_i TC^i$
+        \subsubsection{SAC}
+            $SAC^i$: wie $AC^i$ nur $ODER$-Gatter haben unbeschränkten Fan-in\\
+            $SAC$: $\bigcup\limits_i SAC^i$
+        \subsubsection{CC}
+            $CC^i$: Wie $AC^i$, ausschließlich $MOD$-Gatter\\
+            $CC:$ $\bigcup\limits_i CC^i$
+        \subsubsection{Anmerkung}
+        \begin{itemize}
+            \item Besonders interessant: $AC^0,\ ACC^0,\ TC^0,\ NC^1$
+            \item $NC=AC=ACC=TC=SAC$
+            \item $AC^{i-1}\subseteq NC^i$ (offensichtlich: Fan-in durch Tiefe)
+        \end{itemize}
+

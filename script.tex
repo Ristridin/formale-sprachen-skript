@@ -12,8 +12,12 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{cancel}
-\usetikzlibrary{positioning,shadows,arrows,automata,shapes,decorations.pathreplacing}
+\usetikzlibrary{positioning,shadows,arrows,automata,shapes,decorations.pathreplacing,shapes.gates.logic.IEC,calc,arrows}
 
+\tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
+\pgfkeys{/pgf/logic gate IEC symbol align/.cd,
+  center/.code=\pgftransformyshift{0pt},
+}
 
 \newcommand{\qq}[1]{``#1''}
 \newcommand{\dcup}[0]{\ensuremath{\mathbin{\dot{\cup}}}}
@@ -45,4 +49,6 @@ Mitschrieb: Jan-Peter Hohloch}
         \input{logik.tex}
     \chapter{Satz von Schützenberger}
         \input{schutzenberger.tex}
+    \chapter{Schaltkreiskomplexität}
+        \input{schaltkreis.tex}
 \end{document}

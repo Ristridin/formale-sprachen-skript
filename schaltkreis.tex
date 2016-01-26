@@ -79,4 +79,18 @@
             \item $NC=AC=ACC=TC=SAC$
             \item $AC^{i-1}\subseteq NC^i$ (offensichtlich: Fan-in durch Tiefe)
         \end{itemize}
+    \subsection{Satz}
+        \textsc{Parity} nicht in $AC^0$ (Furst, Saxe, Sipser).
+        \subsubsection{Anmerkung}
+            Also $AC^0\subsetneq NC^1$.\\
+            Offen:
+            \begin{itemize}
+                \item $TC^0\overset{?}{\subsetneq} NC^1$
+                \item $ACC^0\overset{?}{\subsetneq} TC^0$
+            \end{itemize}
+    \subsection{Satz}
+        Reguläre Sprachen (\textsc{Reg}) $\subseteq NC^1$
+        \subsubsection{Beweis}
+            Sei $L$ regulär, oBdA $L\subseteq\{0,1\}^*$\\
+            Sei $|Synt(L)|=k$ und $\eta_L:\Sigmas\rightarrow Synt(L):w\mapsto [w]$\\
 

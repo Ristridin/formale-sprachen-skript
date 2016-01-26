@@ -93,4 +93,43 @@
         \subsubsection{Beweis}
             Sei $L$ regulär, oBdA $L\subseteq\{0,1\}^*$\\
             Sei $|Synt(L)|=k$ und $\eta_L:\Sigmas\rightarrow Synt(L):w\mapsto [w]$\\
+            nummeriere alle $m\in Synt(L)$ binär ($\lceil\log k\rceil$ Stellen): $\widehat{m}$
+            Wir benötigen folgende Schaltkreise/Gatter:
+            \begin{enumerate}[1)]
+                \item $a\in\Sigma:\ a\mapsto\widehat{\eta_L(a)}$
+                \item auf Eingabe $\widehat{m_1},\ \widehat{m_2}$, gib $\widehat{m_1m_2}$ aus
+                \item gib 1 aus gdw. für Eingabe $\widehat{m}$ gilt $m\in\eta_L(L)$
+            \end{enumerate}
+            $\rightarrow$ Größe von 1),2),3) konstant in Wortlänge\\
+            mit Baum $\log$-Tiefe kann Schaltkreisfamilie für $L$ angegeben werden.\\
+            \scriptsize\vspace*{-3.7cm}\\
+            \hspace*{10.5cm}\begin{tikzpicture}
+                [node distance=1cm]
+                \node (w1) {$w_1$};
+                \node (w2) [right of=w1] {$w_2$};
+                \node (wi) [right of=w2] {\dots};
+                \node (wn) [right of=wi] {$w_n$};
+                \node[draw,rectangle] (11) [below of=w1] {1)};
+                \node[draw,rectangle] (12) [right of=11] {1)};
+                \node (1i) [right of=12] {\dots};
+                \node[draw,rectangle] (1n) [right of=1i] {1)};
 
+                \node[draw,rectangle] (21) [below right of=11] {2)} ;
+                \node[draw,rectangle] (2n) [below left of=1n] {2)} ;
+
+                \node[draw,rectangle] (2u) [below right of=21] {2)} ;
+
+                \node[draw,rectangle] (3) [below of=2u] {3)};
+
+                \foreach \i in {1,2,n}
+                {
+                    \draw (w\i) -- (1\i);
+                }
+                \draw (11) -- (21);
+                \draw (12) -- (21);
+                \draw (1n) -- (2n);
+                \draw (21) -- (2u);
+                \draw[dotted] (2n) -- (2u);
+                \draw (2u) -- (3);
+            \end{tikzpicture}
+            \normalsize

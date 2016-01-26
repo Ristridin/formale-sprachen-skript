@@ -133,3 +133,25 @@
                 \draw (2u) -- (3);
             \end{tikzpicture}
             \normalsize
+    \subsection{Satz}
+        \textsc{Reg} ist $NC^1$ vollständig (beweisen wir hier nicht)
+    \subsection{Satz von Buss}
+        Auswertungsproblem für Bool'sche Formeln ist $NC^1$-vollständig.
+    \subsection{Satz}
+        $VPL\subseteq NC^1$ (Dymond ``input-driven PDA'') und $NC^1$-vollständig, da \textsc{Reg}$\subseteq VPL$
+    \subsection{Satz}
+        $CFL$ ist $SAC^1$-vollständig.
+    \subsection{Satz}
+        $FO[arb]=AC^0$
+        \subsubsection{Beweis $\subseteq$}
+            $\exists x\varphi(x)\rightarrow \bigvee\limits_{i=1}^n \varphi(i)$\\
+            $\forall x\varphi(x)\rightarrow \bigwedge\limits_{i=1}^n \varphi(i)$\\
+            $Q_0i,\ Q_1i\rightarrow$ Eingang $x_i$ bzw. $\bar{x_i}$\\
+            $R(i_1,\dots,i_k)\rightarrow$ 0 bzw. 1, je nach Wert von $(i_1,\dots,i_k)$
+    \subsection{weitere Sätze}
+        \begin{itemize}
+            \item $MOD_q[arb]=CC^0_q$
+            \item $FO+MOD_q[arb]=ACC_q^0$
+            \item $DLOGTIME$-uniform $AC^0=FO[+,\times]$
+        \end{itemize}
+

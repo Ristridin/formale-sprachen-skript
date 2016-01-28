@@ -4,4 +4,4 @@ Ergänzungen und Korrekturen willkommen :)
 
 ## Stand
 TODO: 2015-11-10
-Schaltkreiskomplexität done
+omega-Sprachen done

@@ -4,4 +4,4 @@ Ergänzungen und Korrekturen willkommen :)
 
 ## Stand
 TODO: 2015-11-10
-omega-Sprachen done
+Baum-Sprachen angefangen (next: Automaten)

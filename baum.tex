@@ -111,3 +111,56 @@
 
         \draw (a) -- (a1);
     \end{tikzpicture}
+\section{Baum-Automaten}
+    \begin{itemize}
+        \item analog zu DFA/NFA
+        \item bei Wörtern:\\
+            \begin{tikzpicture}[->]
+                \node (q0) {$q_0$};
+                \node (q1) [right of=q0] {$q_1$};
+                \node (qi) [right of=q1] {\dots};
+                \node (qn) [right of=qi] {$q_n$};
+                \node (f) [right of=qn] {$\overset{?}{\in} F$};
+                \draw (q0) edge[bend left] node[above]{$a$} (q1);
+                \draw (q1) edge[bend left] node[above]{\dots} (qi);
+                \draw (qi) edge[bend left] node[above]{\dots} (qn);
+            \end{tikzpicture}
+        \item bei Bäumen: Lauf ist ein Baum\\
+            \begin{tikzpicture}
+                \node (a) {a};
+                \node (b) [below left of=a] {a};
+                \node (c) [below right of=a] {b};
+                \draw (a) -- (b);
+                \draw (a) -- (c);
+            \end{tikzpicture}
+            Lauf:
+            \begin{tikzpicture}
+                \node (a) {$q_1$};
+                \node (b) [below left of=a] {$q_2$};
+                \node (c) [below right of=a] {$q_3$};
+                \draw (a) -- (b);
+                \draw (a) -- (c);
+            \end{tikzpicture}
+            \item es existieren bottom-up und top-down Automaten
+            \item wir besprechen bottom-up
+    \end{itemize}
+    \subsection{Definition}
+        nicht-deterministischer bottom-up Baumautomat:\\
+        $\mathcal{A}=(Q,\Sigma,q_0,\delta,F)$
+        \begin{itemize}
+            \item $Q$ Zustände
+            \item $\Sigma$ Alphabet
+            \item $q_0$ Startzustand
+            \item $\delta\subseteq Q\times Q\times \Sigma\times Q$ Übergangsrelation
+            \begin{itemize}
+                \item deterministisch: $\delta: Q\times Q\times \Sigma\rightarrow Q$
+                \item top-down: $\delta\subseteq Q\times\Sigma\times Q\times Q$
+            \end{itemize}
+            \item $F\subseteq Q$ Endzustände
+        \end{itemize}
+        Sei $t\in T_\Sigma^*$. Ein Lauf $\rho$ auf $t$ erfüllt $$\left(\rho(w0),\rho(w1),t(w),\rho(w)\right)\in\delta,\ t: A\rightarrow\Sigma,\ \rho:A\rightarrow Q$$
+        \subsubsection{Semantik}
+            $L(\mathcal{A})=\{t\in T_\Sigma^*\mid\exists\rho\text{ Lauf auf }t:\rho(\epsilon)\in F\wedge w\text{ Blatt }\Rightarrow \rho(w)=q_0\}$
+        \subsubsection{Determinisierung}
+            Analog zu NFA$\rightarrow$DFA: Potenzmengenkonstruktion\\
+            $\rightarrow$ Komplementabschluss

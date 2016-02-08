@@ -164,3 +164,128 @@
         \subsubsection{Determinisierung}
             Analog zu NFA$\rightarrow$DFA: Potenzmengenkonstruktion\\
             $\rightarrow$ Komplementabschluss
+        \subsubsection{Definition}
+            Baumsprache heißt regulär, wenn sie von Baumautomaten akzeptiert wird.
+\section{Logik: $MSO$ und $FO$ auf Bäumen}
+    \subsection{Syntax}
+        \begin{itemize}
+            \item $Q_ax$
+            \item $x<y$
+            \item $\neg\varphi$
+            \item $\varphi\wedge\psi$
+            \item $\exists x:\varphi$
+            \item $\exists X:\varphi$
+        \end{itemize}
+        \subsubsection{Domäne}
+            \begin{itemize}
+                \item bei Wörtern: $\{0,\dots, n\}$
+                \item bei Bäumen: $A\subseteq\{0,1\}^*$ (wie oben)
+            \end{itemize}
+            Prädikat $x<y, +1$ sinnvoll
+        \subsubsection{Beispiel}
+            \begin{tikzpicture}[node distance=1.5cm]
+                \node[state] (a) {x};
+                \node[state] (c) [below right of=a] {z};
+                \draw (a) -- (b);
+                \draw (a) -- (c);
+                \node[state] (a1) [below left of=a] {};
+                \node[state] (b1) [below left of=a1] {};
+                \node[state] (c1) [below right of=a1] {y};
+                \draw (a1) -- (b1);
+                \draw (a1) -- (c1);
+
+                \draw (a) -- (a1);
+            \end{tikzpicture}
+            $x<z,\ x<y$ aber nicht $z<x$ oder $y<z$
+    \subsection{Satz}
+        Für Baumsprachen gilt $MSO=$\textsc{Reg}. Beweis analog zu Wörtern.
+\section{Baum-Grammatik}
+    \subsection{Definition}
+        $G=(V,\Sigma,P,S)$
+        \begin{itemize}
+            \item $V$ Variablen
+            \item $\Sigma$ Alphabet
+            \item $S\in V$ Startsymbol
+            \item $P=\{A\rightarrow t\mid A\in V,\ t\in T_\Sigma^*\}$ wobei $V$ in $t$ nur an Blättern erlaubt ist.
+        \end{itemize}
+        $L(G)=\{t\in T_\Sigma^*\mid S\overset{P^*}{\rightarrow} t\}$
+        \subsubsection{Beispiel}
+            \begin{tikzpicture}[node distance=1.5cm]
+                \node (A) {A};
+                \node (ra) [right of=A] {$\rightarrow$};
+                \node (B) [below right of=ra] {B};
+                \node (a) [above right of=B] {a};
+                \node (b) [below right of=a] {b};
+                \draw (a) --(b);
+                \draw (a) -- (B);
+            \end{tikzpicture} dann:\\
+            \begin{tikzpicture}[node distance=1.5cm]
+                \node (a1) {a};
+                \node (b1) [below left of=a1] {b};
+                \node (A) [below right of=a1] {A};
+                \node (ra) [right of=A] {$\rightarrow$};
+                \node (b2) [right of=ra] {b};
+                \node (a2) [above right of=b2] {a};
+                \node (a) [below right of=a2] {a};
+                \node (B) [below left of=a] {B};
+                \node (b) [below right of=a] {b};
+                \draw (a) --(b);
+                \draw (a) -- (B);
+                \draw (a1) -- (b1);
+                \draw (a1) -- (A);
+                \draw (a2) -- (b2);
+                \draw (a2) -- (a);
+            \end{tikzpicture}
+    \subsection{Satz}
+        Baumsprache $L$ regulär $\Leftrightarrow\exists$ Grammatik $G$ mit $L(G)=L$
+    \subsection{Definition: yield}
+        Sei $t\in T_\Sigma^*$, dann ist  $yield:\ T_\Sigma^*\rightarrow\Sigma^*$ die Blattsprache.
+        \subsubsection{Beispiel}
+            $t:$\begin{tikzpicture}[node distance=1.5cm]
+                \node (b2) {b};
+                \node (a2) [above right of=b2] {a};
+                \node (a) [below right of=a2] {a};
+                \node (B) [below left of=a] {a};
+                \node (b) [below right of=a] {b};
+                \draw (a) --(b);
+                \draw (a) -- (B);
+                \draw (a2) -- (b2);
+                \draw (a2) -- (a);
+            \end{tikzpicture}
+            $yield(t)=bab$
+    \subsection{Satz}
+        $L$ kontextfrei $\Leftrightarrow\exists K\subseteq T_\Sigma^*$ reg mit $yiels(K)=L$
+        \subsubsection{Anmerkung}
+            \begin{itemize}
+                \item Bäume, reguläre Sprachen: $NC^1$
+                \item CFL, $yield$s: $SAC^1$
+            \end{itemize}
+        \subsection{Beweis}
+            \begin{itemize}
+                \item[$\Leftarrow$:] Sei $G'$ Grammatik mit $L(G')=K$. Konstruiere kontextfreie Grammatik $G$ mit $L(G)=L=yield(K)$. $G'=(V,\Sigma,S,P')$, dann $G=(V,\Sigma,S,P)$ mit $P=\{A\rightarrow yield(t)\mid A\rightarrow t\in P'\}$.\\Es ist $yield(t)=yield(t_1)yield(t_2)$, wenn $t=$\vspace*{-.5cm}\\\hspace*{7cm}\begin{tikzpicture}
+                    \node (a) {a};
+                    \node (t1) [below left of=a] {$t_1$};
+                    \node (t2) [below right of=a] {$t_2$};
+                    \draw (a) -- (t1);
+                    \draw (a) -- (t2);
+                \end{tikzpicture}\\
+                Somit gilt für Satzform:\\
+                $t\overset{P'}{\rightarrow}t'\Leftrightarrow yield(t)\overset{P}{\rightarrow} yield(t')$\\
+                induktiv gilt: $t\in L(G')\Leftrightarrow yield(t)\in L(G)$
+                \item[$\Rightarrow$] Sei $L$ CFL.\\
+                $\Rightarrow\exists G=(V,\Sigma,P,S)$ in CNF mit $L=L(G)$\\
+                Konstruiere $G'$ mit $yield(L(G'))=L$\\
+                Für jede Regel in $G$\begin{itemize}
+                    \item der Form $A\rightarrow a$ füge in $G'$ ein $A\rightarrow$\begin{tikzpicture}
+                        \node[state] (a) {a};
+                    \end{tikzpicture}
+                    \item der Form $A\rightarrow BC$ füge in $G'$ ein $A\rightarrow$\begin{tikzpicture}[node distance=1.5cm]
+                        \node[state] (a) {a};
+                        \node[state,below left of=a] (B) {B};
+                        \node[state,below right of=a] (C) {C};
+                        \draw (a) -- (B);
+                        \draw (a) -- (C);
+                    \end{tikzpicture}
+                \end{itemize}
+                induktiv folgt $yield(L(G'))=L$\qed
+            \end{itemize}

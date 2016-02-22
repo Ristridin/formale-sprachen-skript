@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{dsfont}
 \usepackage{amsthm}
+\usepackage{mathrsfs}
 \usepackage{amsmath,amssymb}
 \usepackage{stmaryrd}
 \usepackage{xfrac}
@@ -12,7 +13,7 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{cancel}
-\usetikzlibrary{positioning,shadows,arrows,automata,shapes,decorations.pathreplacing,shapes.gates.logic.IEC,calc,arrows}
+\usetikzlibrary{patterns,positioning,shadows,arrows,automata,shapes,decorations.pathreplacing,shapes.gates.logic.IEC,calc,arrows}
 
 \tikzstyle{branch}=[fill,shape=circle,minimum size=3pt,inner sep=0pt]
 \pgfkeys{/pgf/logic gate IEC symbol align/.cd,
@@ -56,4 +57,6 @@ Mitschrieb: Jan-Peter Hohloch}
         \input{omega.tex}
     \chapter{Baum-Sprachen}
         \input{baum.tex}
+	 \chapter{Visibly-Counter-Sprachen \& AC0}
+        \input{vplundac0.tex}
 \end{document}

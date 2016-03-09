@@ -271,48 +271,13 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
     \end{itemize}
 
 	\subsection{Satz (Parikh 1966)}
-	L k.f $\Rightarrow$ L hat semilineares Prarikbild\\
+	L k.f $\Rightarrow$ L hat semilineares Prarikhbild\\
 	Ohne Beweis.\\
-
-
-	Konsequenzen:\\
+	\subsubsection{Konsequenzen}
 	\begin{itemize}
-		\item jede kontextfreie Sprache. ist zeichenäquivalent zu einer regulären Sprache
+		\item jede kontextfreie Sprache ist zeichenäquivalent zu einer regulären Sprache
 		\item $L\subseteq\{a\}^*$ k.f. $\Rightarrow$ L reg
 	\end{itemize}
-
-\section{Irgendwas fehlt hier immernoch}
-    %TODO sectioning
-    \dots\\
-    Eindeutigkeit von $\hat{h}$:\\
-    D.h. falls $g:\Sigma^*\rightarrow T^*$ Homomorphismus mit $g(a)=\hat{h}(a)\forall a$, dann ist $g(w)=\hat{h}(w)\forall w\in\Sigma^*$
-    \subsubsection{Beweis}
-        durch Induktion über die Wortlänge $|w|$:
-        \begin{itemize}
-            \item[$|w|=0$:] $g(w)=\epsilon=\hat{h}(w)$
-            \item[$|w|=1$:] $g(a)=\hat{h}(a)\forall a$ nach Annahme
-            \item[$|w|>1$:] Für beliebige aber feste Wortlänge $n$ gelte $g(w)=\hat{h}(w)$.\\
-            \begin{math}
-            \begin{array}{lrl}
-                |w|=n+1:\ & w&=w'a \\
-                & g(w'a) &= g(w')g(a)\\
-                && \overset{IA}{=} \hat{h}(w')\hat{h(a)}\\
-                && = \hat{h}(w'a)\\
-                &&=\hat{h}(w)
-            \end{array}
-            \end{math}\\\hfill\qed
-        \end{itemize}
-    $L$ kontextfrei $\Rightarrow L=L(G),\ G$ in CNF:\\
-    $A\rightarrow a\leadsto h(a)\\ A\rightarrow BC$
-    \subsection{homomorphes Bild?}
-    Induktion über Ableitungen\\
-    \subsubsection{Inverser Homomorphismus}
-    am Beispiel endlicher Automaten\\
-    zu zeigen: Ist $L$ regulär, so auch $h^{-1}(L)$, $h: T^*\rightarrow \Sigma^*$\\
-    Sei $A$ ein endlicher Automat für $L$, $A=(Q,\Sigma,\delta,q_0,F)$\\
-    Baue Automat für $h^{-1}(L)$:\\
-    Bei Eingabe $W$ berechne $h(w)$ buchstabenweise und simuliere $A$. $B=(Q,T,\delta',q_0,F)$ mit $\delta'(t,q)=\hat{\delta}(h(t),q),\ t\in T,\ q\in Q$.\\
-    Funktioniert genauso für PDA und DPDA.
     \subsection{Anmerkungen}
     \begin{itemize}
         \item Homomorphismus kann mit $h(\$)=\epsilon$ $w\$ w^R$ kaputt machen
@@ -330,6 +295,6 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
                 \item $\Sigma_r=\{a_r\mid a\in\Sigma\}$
                 \item $\Sigma_{int}=\{a_{int}\mid a\in\Sigma\}$
             \end{itemize}
-            \item Kellerinhalte einer kontextfreien Sprache sind immer regulär.
         \end{itemize}
+        \item Kellerinhalte einer kontextfreien Sprache sind immer regulär.
     \end{itemize}

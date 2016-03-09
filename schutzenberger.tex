@@ -15,7 +15,7 @@
 \section{Definition: Green'sche Relationen}
     Wir definieren die sogenannten Green'schen Relationen auf $M$ via:
     \begin{itemize}
-        \item $\le_R b\Leftrightarrow aM\subseteq bM$
+        \item $a\le_R b\Leftrightarrow aM\subseteq bM$
         \item $a\le_L b\Leftrightarrow Ma\subseteq Mb$
         \item $aIb\Leftrightarrow MaM=MbM$
         \item $aRb\Leftrightarrow aM=bM$
@@ -45,11 +45,11 @@
             \begin{itemize}
                 \item[$\subseteq$] klar ($1\in M$)
                 \item[$\supseteq$] Sei $x\in (Mp\cap pM)\setminus J_p$.\\
-                Dann gibt es $q,r\in M$ mit $pq=x=rp$. Da $x\not in J_p$, ist $p=uxv$ für $u,v\in M$.\\
+                Dann gibt es $q,r\in M$ mit $pq=x=rp$. Da $x\notin J_p$, ist $p=uxv$ für $u,v\in M$.\\
                 Damit: $$p=uxv=(ur)p(v)=urp=ux=upq=pq=x\Rightarrow x\in\{p\}$$\qed
             \end{itemize}
 \section{Beweis zum Satz von Schützenberger}
-    zu zeigen: ist $Synt(L)$ aperiodisch, so ist $L$ sternfrei.\\
+    Zu zeigen: ist $Synt(L)$ aperiodisch, so ist $L$ sternfrei.\\
     $Synt(L)$ endlich, da $L\in \textsc{Reg}$
     Sei $\varphi:\Sigmas\rightarrow M=Synt(L)$ ein Monomorphismus mit $M$ aperiodisch. Da $\varphi\ L$ erkennt, existiert eine endliche Teilmenge $P\subseteq M$ mit $\varphi^{-1}(P)=\bigcup\limits_{m\in P}\varphi^{-1}(m)=M$. Wir zeigen $\varphi^{-1}(\{m\})$ ist sternfrei $\forall m\in M$:\\
     Induktion über $r(m)=|M\setminus MmM|$:

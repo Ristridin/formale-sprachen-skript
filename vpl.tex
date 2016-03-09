@@ -176,7 +176,7 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
             \end{align*}
             $\varphi(a) = c\Tau(\Pi_1)c\Tau(\Pi_2)cd\\
             \varphi(b) = c\Tau(\Pi_3)c\Tau(\Pi_4)cd\\
-            A_1\Rightarrow_G^* aabA_2$\\
+            A_1\rightarrow_G^* aabA_2$\\
             \begin{align*}
                 \varphi(aab) =& c\Tau(\Pi_1)c\Tau(\Pi_2)cdc\Tau(\Pi_1)c\Tau(\Pi_2)cdc\Tau(\Pi_3)c\Tau(\Pi_4)cd\\
                 =& c\$a_1a_2^1a_1b_1b_2^1b_1a_1a_2^2a_1a_1a_2^2a_1cb_1b_2^2b_1cd\\
@@ -185,47 +185,44 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
             \end{align*}
             Ableitung $aabA_2$:\\
             $$A_1\overset{\Pi_1}{\Rightarrow}aA_2A_2\overset{\Pi_2}{\Rightarrow}aaA_2\overset{\Pi_3}{\Rightarrow}aabA_2\dots$$
-            $y_1y_2y_3$ \qq{kürzen}$\rightarrow \$a_1a_2^2a_1=\mu(y_1y_2y_3)$ ($\mu$ entfernt nebeneinander stehende zusammenpassende \qq{Klammern}; $y$ sind nur die interessanten Teile, der Rest steckt in x und z)\\
+            $y_1y_2y_3$ \qq{kürzen}$\rightarrow \$a_1a_2^2a_1=\mu(y_1y_2y_3)$ ($\mu$ entfernt nebeneinander stehende zusammenpassende \qq{Klammern}; $y$ sind nur die Ableitungs-relevanten Teile, der Rest steckt in $x_i$ und $z_i$)\\
             $y_4=\Tau(\Pi_4)\rightarrow y_1y_2y_3y_4\in\$\mathds{D}_2$
             Leite in Satzform immer die Variable am weitesten links ab.\\
             Allgemein:\\
             $(*) A_1'\rightarrow aB_1\dots B_m$\\
-            $A_1\Rightarrow_G^* a_1\dots a_kA_1'\dots A_n \overset{(*)}{\Rightarrow} a_1\dots a_kaB_1\dots B_mA_2\dots A_n$\\
+            $A_1\rightarrow_G^* a_1\dots a_kA_1'\dots A_n \overset{(*)}{\rightarrow} a_1\dots a_kaB_1\dots B_mA_2\dots A_n$\\
             $A_1\bar{A_1}\dots \mid A_n'\dots A_1'\leadsto A_n'\dots A_1'\bar{A_1'}B_m\dots B_1$
-%TODO: 2015-11-10
-	\\\\ wir zeigen:\\
-	$S\Rightarrow_G^* a_1\dots a_kA_{i1}\dots A_{ir} \text{ mit Produktionen } (\Pi_{p1},\dots,\Pi_{pk})\\
-	\Longleftrightarrow$\\
+        \subsubsection{Lemma}
+	$A_1\rightarrow_G^* a_1\dots a_kA_{i1}\dots A_{ir} \text{ mit Produktionen } (\Pi_{p1},\dots,\Pi_{pk})\\
+	\Leftrightarrow$
 	\begin{enumerate}[(a)]
-		\item $\varphi(a_1\dots a_k)=x_1cy_1cz_1d\dots x_kcy_kcz_kd$ \\\textit{$x_i$= nicht benutzte Produktionen}
+		\item $\varphi(a_1\dots a_k)=x_1cy_1cz_1d\dots x_kcy_kcz_kd$ \\\textit{$x_i, z_i$: nicht benutzte Produktionen}
 		\item $y_1\dots y_k \in Prefix(\$\mathds{D}_2)$
-		\item $\mu(y_1\dots y_k)= \$a_1a_2^{ir}a_1\dots a_1a_2^{i1}a_2$
+		\item $\mu(y_1\dots y_k)= \$a_1a_2^{i_r}a_1\dots a_1a_2^{i_1}a_2$
 	\end{enumerate}
-	also $S\Rightarrow^* a_1\dots a_k \Leftrightarrow (a) \wedge y_1\dots y_n \in \$ \mathds{D}_2 \wedge \mu(y_1\dots y_n)=\$$
-\subsubsection{Beweis}durch Induktion über K\\
-
-		IA:\\$ S\Rightarrow_G^1 a_1A_{i1}\dots A_{ir} \text{ dann }\\
-		ex \Pi =S \rightarrow a_1A_{i1}\dots A_{ir} \in P_{a_1} \\
-		\varphi(a_1)=x_1c_{y_1}c_{z_1}d= c\Tau(\Pi_{p1})c\Tau(\Pi_{p2})c\dots c \Tau(\Pi_{pm})d$\\\\
-		$\Tau(\Pi)=\$a_1a_2a_1b_1b_2b_1a_1a_2^{ir}a_1\dots a_1a_2^{i1}a1$\\
-		$	\rightarrow a) \checkmark b) \checkmark c)\checkmark$ offensichtlich.\\
-		IS:  \\
-		Induktions Annahme:\\
-		$S\Rightarrow_G^*a_1\dots a_k A_{i1}\dots A_{ir} \Leftrightarrow a)\cap b) \cap c) \checkmark$\\
-		sei $\Pi = A_{i1} \rightarrow a_{k+n} A_{j1}\dots A_{jt} \in P_a$ dann:\\
-		$S \Rightarrow_G a_1\dots a_{k+1} % 1 oder n?
-		A_{j1}\dots A_{jt}A_{i2}\dots A_{ir}$\\
-		Induktiv:\\
-		$\mu(y_1\dots y_k)=\$a_1a_2^{ir}a_1\dots a_1a_2^{i1}a_2\\
-		\mu(y_1\dots y_k)\mu(y_{k+1})=\$a_1a_2^{ir}a_1\dots \cancel{a_1a_2^{i1}a_2} \cancel{b_1b_2^{i1}b_1}a_1a_2^{it}a_1\dots a_1a_2^{i1}a_1\\$
-		a),b),c) \checkmark\\
-		Rückrichtung: sind $\mu(y_1\dots y_k), \mu(y_1 \dots y_{k+1})$\\
-		und $S\Rightarrow_G^* a_1\dots a_k A_{i1}\dots A_{ir}$ wie oben.\\
-		So muss eine entgegengesetzte Regel exisitieren womit\\
-		$S\Rightarrow_G^* a_1\dots a_{k+1}A_{j1}\dots A_{jt}A_{i2}\dots A_{ir}
-		\hspace{2cm}\square$
-
-
+	also $A_1\rightarrow^* a_1\dots a_k \Leftrightarrow (a) \wedge y_1\dots y_n \in \$ \mathds{D}_2 \wedge \mu(y_1\dots y_n)=\$$
+\subsubsection{Beweis}durch Induktion über K
+    \begin{itemize}
+        \item[IA:] $ A_1\rightarrow_G^1 a_1A_{i_1}\dots A_{i_r} \text{ dann }\\
+        \exists \Pi =A_1\rightarrow a_1A_{i_1}\dots A_{i_r} \in P_{a_1} \\
+        \varphi(a_1)=x_1c{y_1}c{z_1}d= c\Tau(\Pi_{p1})c\Tau(\Pi_{p2})c\dots c \Tau(\Pi_{pm})d$\\[0.2cm]
+        $\Tau(\Pi)=\$a_1a_2a_1b_1b_2b_1a_1a_2^{i_r}a_1\dots a_1a_2^{i_1}a_1$\\
+        $   \rightarrow a) \checkmark b) \checkmark c)\checkmark$ offensichtlich.
+        \item[IS:] IA:\\
+        $A_1\rightarrow_G^*a_1\dots a_k A_{i_1}\dots A_{i_r} \Leftrightarrow (a)\wedge (b) \wedge (c) \checkmark$\\
+        sei $\Pi = A_{i_1} \rightarrow a_{k+1} A_{j_1}\dots A_{j_t} \in P_a$ dann:\\
+        $A_1\rightarrow_G^* a_1\dots a_{k+1} % 1 oder n?
+        A_{j_1}\dots A_{j_t}A_{i_2}\dots A_{i_r}$\\
+        Induktiv:\\
+        $\mu(y_1\dots y_k)=\$a_1a_2^{ir}a_1\dots a_1a_2^{i1}a_2\\
+        \mu(y_1\dots y_k)\mu(y_{k+1})=\$a_1a_2^{i_r}a_1\dots \cancel{a_1a_2^{i_1}a_2} \cancel{b_1b_2^{i_1}b_1}a_1a_2^{i_t}a_1\dots a_1a_2^{i_1}a_1\\$
+        a),b),c) \checkmark
+    \end{itemize}
+        Rückrichtung: sind $\mu(y_1\dots y_k), \mu(y_1 \dots y_{k+1})$\\
+        und $A_1\rightarrow_G^* a_1\dots a_k A_{i_1}\dots A_{i_r}$ wie oben.\\
+        So muss eine entgegengesetzte Regel exisitieren womit\\
+        $A_1\rightarrow_G^* a_1\dots a_{k+1}A_{j_1}\dots A_{j_t}A_{i_2}\dots A_{i_r}
+        \hspace{2cm}\square$
 
     \section{Satz von Parikh}
     \newtheorem{def1}{Definition}[section]

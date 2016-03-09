@@ -158,7 +158,7 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
         \subsubsection{Beweis}
             \emph{Idee:} Wähle $\varphi$ und $L_0$ so, dass sich Ableitung in GNF in $L_0$ wiederfindet.\\[0.2cm]
             $\Sigma=\{a_1,a_2,b_1,b_2,c,d,\$\},\ L_0\subseteq \Sigma^*,\ x_i,z_i\in\Sigma^*, y_1y_2\dots y_n\in\$\mathds{D}_2$\\
-				$L_0 = \{\epsilon\}\{x_1cy_1cz_1d\dots x_0cy_ncz_nd| n\geq 1;x_i,z_i \in \Sigma^*; y_1,y_2,\dots,y_n\in \$\mathbb{D}_2$\\
+			$L_0 = \{\epsilon\}\cup\{x_1cy_1cz_1d\dots x_0cy_ncz_nd| n\geq 1;x_i,z_i \in \Sigma^*; y_1,y_2,\dots,y_n\in \$\mathds{D}_2\}$\\
             $L_0$ ist kontextfrei.\\[0,2cm]
             Sei G in GNF mit $L=L(G)$ und $G=\left(\{A_1,\dots,A_{|V|}\},\Gamma,P=\{\Pi_1,\dots,\Pi_k\},A_1\right),\ P_a=\{\Pi\in P\mid \Pi$ beginnt rechts mit $a\},\ \forall a\in\Gamma$\\
             $\varphi:\Gamma^*\rightarrow\Sigma^*, a\mapsto \left(\prod\limits_{\Pi\in P_a}c\Tau(\Pi)\right)cd=c\Tau(\Pi_{P_1})c\Tau(\Pi_{P_2})\dots c\Tau(\Pi_{|P_a|})cd$\\

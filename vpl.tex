@@ -170,8 +170,8 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
             \begin{align*}
                 \Pi_1=A_1\rightarrow aA_2A_2 && \Tau(\Pi_1)=\$a_1a_2^1a_1b_1b_2^1b_1a_1a_2^2a_1a_1a_2^2a_1\\
                 \Pi_2=A_2\rightarrow a && \Tau(\Pi_2)=b_1b_2^2b_1\\
-                \Pi_3=A_2\rightarrow bA_2 && \Tau(\Pi_3)=b_1b_2^3b_1a_1a_2^2a_2\\
-                \Pi_4=A_2\rightarrow b && \Tau(\Pi_4)=b_1b_2^4c b_1
+                \Pi_3=A_2\rightarrow bA_2 && \Tau(\Pi_3)=b_1b_2^2b_1a_1a_2^2a_2\\
+                \Pi_4=A_2\rightarrow b && \Tau(\Pi_4)=b_1b_2^2c b_1
             \end{align*}
             $\varphi(a) = c\Tau(\Pi_1)c\Tau(\Pi_2)cd\\
             \varphi(b) = c\Tau(\Pi_3)c\Tau(\Pi_4)cd\\
@@ -184,7 +184,7 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
             \end{align*}
             Ableitung $aabA_2$:\\
             $$A_1\overset{\Pi_1}{\Rightarrow}aA_2A_2\overset{\Pi_2}{\Rightarrow}aaA_2\overset{\Pi_3}{\Rightarrow}aabA_2\dots$$
-            $y_1y_2y_3$ \qq{kürzen}$\rightarrow \$a_1a_2^2a_1=\mu(y_1y_2y_3)$\\
+            $y_1y_2y_3$ \qq{kürzen}$\rightarrow \$a_1a_2^2a_1=\mu(y_1y_2y_3)$ ($\mu$ entfernt nebeneinander stehende zusammenpassende \qq{Klammern}; $y$ sind nur die interessanten Teile, der Rest steckt in x und z)\\
             $y_4=\Tau(\Pi_4)\rightarrow y_1y_2y_3y_4\in\$\mathds{D}_2$
             Leite in Satzform immer die Variable am weitesten links ab.\\
             Allgemein:\\
@@ -196,11 +196,11 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
 	$S\Rightarrow_G^* a_1\dots a_kA_{i1}\dots A_{ir} \text{ mit Produktionen } (\Pi_{p1},\dots,\Pi_{pk})\\
 	\Longleftrightarrow$\\
 	\begin{enumerate}[(a)]
-		\item $\varphi(a_1\dots a_k)=x_1c_{y1}c_{z1}d\dots x_kc_{yk}c_{zk}d$ \\\textit{$x_i$= nicht benutzte Produktionen ?}
+		\item $\varphi(a_1\dots a_k)=x_1cy_1cz_1d\dots x_kcy_kcz_kd$ \\\textit{$x_i$= nicht benutzte Produktionen}
 		\item $y_1\dots y_k \in Prefix(\$\mathds{D}_2)$
 		\item $\mu(y_1\dots y_k)= \$a_1a_2^{ir}a_1\dots a_1a_2^{i1}a_2$
 	\end{enumerate}
-	also $S\Rightarrow^* a_1\dots a_k \Leftrightarrow a) \cap y_1\dots y_n \in \$ \mathds{D}_2 \cap \mu(y_1\dots y_n)=\$$
+	also $S\Rightarrow^* a_1\dots a_k \Leftrightarrow (a) \wedge y_1\dots y_n \in \$ \mathds{D}_2 \wedge \mu(y_1\dots y_n)=\$$
 \subsubsection{Beweis}durch Induktion über K\\
 
 		IA:\\$ S\Rightarrow_G^1 a_1A_{i1}\dots A_{ir} \text{ dann }\\
@@ -229,45 +229,48 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
     \section{Satz von Parikh}
     \newtheorem{def1}{Definition}[section]
 	  \begin{def1}
-	  	$M\subseteq W^n$ heißt linear g.d.w M ist der Form \\ $\{\alpha_0+n_1\alpha_1+\dots+n_m\alpha_m|n_i\geq0\}$ für $\alpha_1 \dots \alpha_m \in \mathds{N}^n$
+	  	$M\subseteq \mathds{N}^n$ heißt linear g.d.w M ist der Form \\ $\{\alpha_0+n_1\alpha_1+\dots+n_m\alpha_m|n_i\in\mathds{N}_0\}$ für $\alpha_1 \dots \alpha_m \in \mathds{N}^n$
 	  \end{def1}
 	  \begin{def1}
 	  	M heißt semilinear g.d.w.
 	  	$\exists$ lineare Mengen $M_1\dots M_k:$\\
 	  	$M=\bigcup\limits_{i=1}^kM_i$
 	  \end{def1}
-	  \begin{def1}[Parikh Abbildung für Wörter] .\\
-	  	$\Psi: \Sigma^*\rightarrow N^n$ wobei  $\Sigma=\{a_1\dots a_n\}$ und $w\mapsto (\underbrace{|w_{a_1}|}_{Anzahl a_1} ,|w_{a_2}|,\dots, |w_{a_n}|)$\\
-	  	  Beispiel: $\phi(abbaccba)=\phi(aaabbbcc)=(3,3,2)$\\
+	  \begin{def1}[Parikh Abbildung für Wörter] \ \\
+	  	$\Psi: \Sigma^*\rightarrow \mathds{N}^n$ wobei  $\Sigma=\{a_1\dots a_n\}$ und $w\mapsto (\underbrace{|w|_{a_1}}_{\text{Anzahl }a_1} ,|w|_{a_2},\dots, |w|_{a_n})$\\
+	  	  Beispiel: $\Psi(abbaccba)=\Psi(aaabbbcc)=(3,3,2)$\\
 	  \end{def1}
-	\begin{def1}[Parikh Abbildung für Sprachen].\\
-		$\Phi(L)=\{\Phi(w)|w\in L\}$\\
-		$\Phi(xy)=\Phi(yx)=\Phi(x)+\Phi(y)$\\
-		$\Phi(L)$ heißt Parikhbild von L
+	\begin{def1}[Parikh Abbildung für Sprachen]\ \\
+		$\Psi(L)=\{\Psi(w)|w\in L\}$\\
+		$\Psi(xy)=\Psi(yx)=\Psi(x)+\Psi(y)$\\
+		$\Psi(L)$ heißt Parikhbild von L
 	\end{def1}
 	\begin{def1}
-		$L_1$ und $L_2$ heißen Zeichenäquivalent g.d.w $\Phi(L_1)=\Phi(L_2)$\\
+		$L_1$ und $L_2$ heißen \emph{zeichenäquivalent} g.d.w $\Psi(L_1)=\Psi(L_2)$\\
 	\end{def1}
 	\subsubsection{Satz:}
-	L hat semilineares Parikhbild $\Longleftrightarrow$ L ist zeichenäquivalent zu einer reg. Sprache
+	L hat semilineares Parikhbild $\Leftrightarrow$ L ist zeichenäquivalent zu einer reg. Sprache
 	\subsubsection{Beweis:}
-	$\Phi(L) semilinear \Rightarrow \Phi(L)= M_1\cup M_2\cup M_m$ \\mit $M_i =\{\alpha_{i0}+n_1\alpha_{i1}+\dots n_{ir_{i}}\alpha_{ir_{i}}|n_{i,j}\geq0, 1\leq j \leq r_i\}$\\
-	seien $y_{ij} \in \Sigma^*$ mit $\Phi(y_{ij})=\alpha_{ij}$\\
-	Det Grammatik G: $s\rightarrow A_1|\dots|A_m$\\
-	$A_i\rightarrow A_iy_{i1}| A_iy_{i2}|\dots| A_iy_{ir}|y_{i0}$\\
-	es ist $\Phi(L)=\Phi(L(G))$ und $L(0)$ regulär.\\
-	L $\Leftarrow$ Induktion über reguläre Ausdrücke.
-	\begin{enumerate}
-		\item $L=L(0) \Rightarrow \Phi(L)=\emptyset$
-		\item $L=L(\epsilon) \Rightarrow \Phi(L)=0$
-		\item $L=L(a_i) \Rightarrow \Phi(L)= \{0\dots,1,\dots 0\}$
-		\item $L=L_1 \cup L_2, \Phi(L_1),\Phi(L_2) semilin \Rightarrow \Phi(L)= \Phi(L_1\cup L_2)=\Phi(L_1)\cup \Phi(L_2)$
-		\item $L=L_1L_2 \hspace{0.2cm}\Phi(L_1),\Phi(L_2) s.l. \Rightarrow \Phi(L)= \Phi(L_1L_2)=\Phi(L_1)+ \Phi(L_2)$
-		\item $\Phi(L) s.l. \Rightarrow \Phi(L^*) s.l$\\
-		$\Phi(L)=M_1\cup\dots\cup M_k =\Phi(L_1)\cup\dots\cup\Phi(L_k)$\\
-		$\Phi(L_i^*)$ s.l. da $\Phi(L_i^*)=\{0\}\cup\Phi(L_i)$\\ %versteh ich nicht...
-		$\Phi(L_1^*L_2^*\dots L_k^*) s.l. = \Phi((L_1\cup L_2\dots \cup L_k)^*)=\Phi(L^*) \hspace{2cm} \square$
-	\end{enumerate}
+    \begin{itemize}
+        \item[$\Rightarrow$] $\Psi(L)$ semilinear $\Rightarrow \Psi(L)=
+            M_1\cup M_2\cup\dots\cup M_m$ \\mit $M_i =\{\alpha_{i0}+n_1\alpha_{i1}+\dots n_{ir_{i}}\alpha_{ir_{i}}|n_{i,j}\in\mathds{N}_0, 1\leq j \leq r_i\}$\\
+            seien $y_{ij} \in \Sigma^*$ mit $\Psi(y_{ij})=\alpha_{ij}$\\
+            Grammatik G: $S\rightarrow A_1|\dots|A_m$\\
+            $A_i\rightarrow A_iy_{i1}| A_iy_{i2}|\dots| A_iy_{ir}|y_{i0}$\\
+            es ist $\Psi(L)=\Psi(L(G))$ und $L(G)$ regulär.
+        \item[$\Leftarrow$] Induktion über reguläre Ausdrücke.
+            \begin{enumerate}
+                \item $L=L(\emptyset) \Rightarrow \Psi(L)=\emptyset$
+                \item $L=L(\epsilon) \Rightarrow \Psi(L)=\{0\}$
+                \item $L=L(a_i) \Rightarrow \Psi(L)= \{(0,\dots,1,\dots, 0)\}$
+                \item $L=L_1 \cup L_2\\\Psi(L_1),\Psi(L_2)\text{ semilinear }\Rightarrow \Psi(L)= \Psi(L_1\cup L_2)=\Psi(L_1)\cup \Psi(L_2)$
+                \item $L=L_1L_2\\\Psi(L_1),\Psi(L_2) s.l. \Rightarrow \Psi(L)= \Psi(L_1L_2)=\Psi(L_1)+ \Psi(L_2)$
+                \item $\Psi(L) s.l. \Rightarrow \Psi(L^*) s.l$\\
+                $\Psi(L)=M_1\cup\dots\cup M_k =\Psi(L_1)\cup\dots\cup\Psi(L_k)$\\
+                $\Psi(L_i^*)$ s.l. da $\Psi(L_i^*)$ und $^*$ von linearer Menge semilinear\\
+                $\Psi(L_1^*L_2^*\dots L_k^*) s.l. = \Psi((L_1\cup L_2\dots \cup L_k)^*)=\Psi(L^*) \hspace{2cm} \square$
+            \end{enumerate}
+    \end{itemize}
 
 	\subsection{Satz (Parikh 1966)}
 	L k.f $\Rightarrow$ L hat semilineares Prarikbild\\

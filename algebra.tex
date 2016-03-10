@@ -31,6 +31,7 @@
     \begin{itemize}
         \item existiert neutrales Element?
         \item ex. 0-Element?
+        \item ex. inverses Element?
         \item kommutativ?
     \end{itemize}
     \subsubsection{Beispiel}
@@ -61,12 +62,12 @@
         \indent$\Rightarrow \sim$ partitioniert $X$ in Äquivalenzklassen $X/\sim$\\
         Sei $(H,\circ)$ eine Halbgruppe und $\sim\subseteq H\times H$. $\sim$ heißt verträglich mit $\circ$, wenn $a\sim b\wedge c\sim d\Rightarrow ac\sim bd$. $\sim$ ist damit eine Kongruenzrelation $\Rightarrow (H/\sim,\circ_\sim)$ ist Halbgruppe.\\
         $\circ: H\times H\rightarrow H: a\circ b\mapsto c$\\
-        $\circ_\sim: H/\sim\times H/\sim\rightarrow H: [a]_\sim\circ [b]_\sim\mapsto [c]_\sim$
+        $\circ_\sim: H/\sim\times H/\sim\rightarrow H: [a]_\sim\circ_\sim [b]_\sim\mapsto [c]_\sim$
         \subsubsection{Normalteiler}
             $N<G$: N ist Untergruppe von G\\
             $N\triangleleft G:\ $
             N ist Normalteiler von G, d.h. $\forall g\in G : gN=Ng\ (\Leftrightarrow \forall g\in G : gNg^{-1}=N$)\\
-            Normalteiler und Kongruenzrelation stehen n 1-zu-1-Zusammenhang: Nebenklassen $\leftrightarrow$ Äquivalenzklassen; z.B. $\mathds{Z}/n\mathds{Z}$
+            Normalteiler und Kongruenzrelation stehen in 1-zu-1-Zusammenhang: Nebenklassen $\leftrightarrow$ Äquivalenzklassen; z.B. $\mathds{Z}/n\mathds{Z}$
     \subsection{Freies Monoid}
         (freie Gruppe, ...)\\
         Zwei äquivalente Definitionen:
@@ -125,11 +126,12 @@
             \begin{itemize}
                 \item[\underline{Satz:}] $L$ reg $\Leftrightarrow Synt(L)$ endlich
                 \item[\underline{Satz:}] $Synt(L)$ erkennt $L$ mittels $\eta_L$
-                \item[\underline{Def.:}] $N\prec M :\Leftrightarrow \exists M'<M\exists\psi:M'\twoheadrightarrow N$. ``$N$ teilt $M$''
+                \item[\underline{Def.:}] $N\prec M :\Leftrightarrow \exists M'\le M\exists\psi:M'\twoheadrightarrow N$. ``$N$ teilt $M$''
                 \item[\underline{Satz:}] $M$ erkennt $L\Leftrightarrow Synt(L)\prec M$
             \end{itemize}
             \begin{enumerate}[1)]
-                \item $\varphi:M\rightarrow M$ Endomorphismus und Epimorphismus $\Leftrightarrow \varphi$ Monomorphismus, falls $|M|<\infty$
+                \item Falls $M$ endlich, so gilt:\\
+                $\varphi:M\twoheadrightarrow M$ $\Leftrightarrow \varphi$ Monomorphismus
                 \item $Synt(L)$ erkennt $L$
                 \item $\prec$ ist transitiv
                 \item $Synt(L_1\cap L_2)\prec Synt(L_1)\times Synt(L_2)$

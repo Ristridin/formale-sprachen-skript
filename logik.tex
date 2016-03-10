@@ -11,7 +11,7 @@ $w\models \varphi$, wenn $w$ Modell für $\varphi$, also $\varphi$ wahr unter $w
             \item Prädikate: $<,\ Q_a,\ Q_b$; $Q_ax$ wahr $\Leftrightarrow a$ an Stelle $x$
             \item alle Variablen müssen gebunden sein
         \end{itemize}
-        \item $\varphi_2=\exists X\left(\forall z(z\geq x)\Rightarrow X(x)\right)\wedge \forall x\left(\forall z(z\leq x)\Rightarrow \neg X(x)\right)\wedge\\\hspace*{1.2cm} \forall x\forall y\left(\left((x<y)\wedge\forall z (z>x\Rightarrow z\geq y)\right)\Rightarrow\left(X(x)\Leftrightarrow \neg X(y)\right)\right)$
+        \item $\varphi_2=\exists X\forall x\left(\forall z(z\geq x)\Rightarrow X(x)\right)\wedge \forall x\left(\forall z(z\leq x)\Rightarrow \neg X(x)\right)\wedge\\\hspace*{1.2cm} \forall x\forall y\left(\left((x<y)\wedge\forall z (z>x\Rightarrow z\geq y)\right)\Rightarrow\left(X(x)\Leftrightarrow \neg X(y)\right)\right)$
         \begin{itemize}
             \item $L(\varphi_2)=\left(\Sigma^2\right)^*$
             \item $\exists X$ ist Quantor zweiter Ordnung
@@ -58,21 +58,21 @@ $w\models \varphi$, wenn $w$ Modell für $\varphi$, also $\varphi$ wahr unter $w
             \end{enumerate}
         \subsubsection{Definition}
             Sei $\varphi$ eine $MSO$-Formel in der keine Variable mehrfach gebunden wird mit freien Variablen $V_1,\ V_2$.\\
-            Die \underline{Modellrelation} $\models$ zwischen $\varphi$ und $\left(V_1,V_2\right)$-Strukturen ist induktiv. Im Folgenden sei $w=\left(a_1,X_1,Y_1\right),\left(a_2,X_2,Y_2\right),\dots,\left(a_n,X_n,Y_n\right)$ eine $\left(V_1,V_2\right)$-Struktur.
+            Die \underline{Modellrelation} $\models$ zwischen $\varphi$ und $\left(V_1,V_2\right)$-Strukturen ist induktiv definiert. Im Folgenden sei $w=\left(a_1,X_1,Y_1\right),\left(a_2,X_2,Y_2\right),\dots,\left(a_n,X_n,Y_n\right)$ eine $\left(V_1,V_2\right)$-Struktur.
             \begin{itemize}
                 \item $w\models Q_ax$, falls es ein $1\le i\le n$ gibt mit $a_i=a$ und $x\in X_i$
                 \item $w\models X(x)$, falls es ein $1\le i\le n$ gibt mit $x\in X_i$ und $X\in Y_i$
-                \item $w\models P(x_1,\dots,x_m)$ für ein $m$-äres Prädikat, falls es $i_1,\dots,i_m$ gibt mit $x_j\in X_{ij}$ und $(i_1,\dots,i_m)\in P$
+                \item $w\models P(x_1,\dots,x_m)$ für ein $m$-äres Prädikat, falls es $i_1,\dots,i_m$ gibt mit $x_{j}\in X_{i_j}$ und $(i_1,\dots,i_m)\in P$
                 \item $w\models\neg\psi$ falls $w\not\models\psi$
                 \item $w\models\psi_1\wedge\psi_2$ falls $w\models\psi_1\wedge w\models\psi_2$
                 \item $w\models\exists x:\psi$ falls ein $1\le i\le n$, sodass die $(V_1\cup \{x\},V_2)$-Struktur $$w'=(a_1,X_1,Y_1)\dots (a_i,X_i\cup\{x\},Y_i)\dots(a_n,X_n,Y_n)$$ $w'\models\psi$ erfüllt.
-                \item $w\models\exists X:\psi$, falls es eine Menge $M\subseteq\{1,\dots,n\}$ gibt, sodass $(V_1,V_2\cup\{X\})$-Struktur\\$w'=(a_1,X_1,Y_1)\dots (a_i,X_i\cup\{x\},Y_i)\dots(a_n,X_n,Y_n)$ mit $Y_i=\begin{cases}
+                \item $w\models\exists X:\psi$, falls es eine Menge $M\subseteq\{1,\dots,n\}$ gibt, sodass $(V_1,V_2\cup\{X\})$-Struktur\\$w'=(a_1,X_1,Y_1)\dots (a_n,X_n,Y_n)$ mit $Y_i=\begin{cases}
                     Y_i & \text{falls }i\not\in M\\
                     Y_i\cup\{X\} & \text{sonst}
                 \end{cases}$
             \end{itemize}
         \subsubsection{Bemerkung}
-            Falls wir und mit einer $FO$-Formel befassen, verwenden wir V-Strukturen, d.h. Worte über $\Sigma\times\mathcal{P}(V)$. $MSO$-Formeln ohne freie Variablen ($MSO$-Sätze) besitzen also $(\emptyset,\emptyset)$-Strukturen, also Wörter, als Modelle.
+            Falls wir uns mit einer $FO$-Formel befassen, verwenden wir V-Strukturen, d.h. Worte über $\Sigma\times\mathcal{P}(V)$. $MSO$-Formeln ohne freie Variablen ($MSO$-Sätze) besitzen also $(\emptyset,\emptyset)$-Strukturen, also Wörter, als Modelle.
         \subsubsection{Definition}
             Sei $\varphi$ ein $MSO$-Satz. Die von $\varphi$ definierte Sprache ist $L_\varphi=\{w\in\Sigmas\mid w\models\varphi\}$
     \section{Rückblick (FS1)}

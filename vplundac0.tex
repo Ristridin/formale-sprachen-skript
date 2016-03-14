@@ -90,3 +90,11 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
         	\node[right] at (4,4) {$q$};
         \end{tikzpicture}\\
         Äquivalent (``Korridor''): $$\exists\alpha\in\mathds{Q},\gamma\in\mathds{N}\forall w\in\Sigmas,w'\text{ Präfix von }w:\alpha|w'|-\gamma\le\Delta(w')\le\alpha|w'|+\gamma$$
+\section{Einfaches Höhenverhalten}
+    \subsection{Definition: aktiver Zustand}
+        Zustand $q$ heißt \emph{aktiv}, wenn $\exists w\in L(\mathcal{A})$ und Position $i<j$, sodass $(q_0,0)w_1\dots w_i(q,h),h>m+|Q|$ und $h-\Delta(w_1\dots w_j)>|Q|$
+    \subsection{Lemma}
+        Für $L=L(\mathcal{A})$, sodass $\mathcal{A}$ aktiven Zustand ohne konstante Steigung hat, dann $L\not\in AC^0$ ($TC^0$-schwer)\\
+        Beweis: verallgemeinertes Beispiel von oben.
+    \subsection{Definition}
+        Hat ein VCA $\mathcal{A}$ konstante Steigung in allen aktiven Zuständen, so hat die Sprache $L(\mathcal{A})$ \emph{einfaches Höhenverhalten (EHV)}

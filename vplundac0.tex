@@ -98,3 +98,44 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
         Beweis: verallgemeinertes Beispiel von oben.
     \subsection{Definition}
         Hat ein VCA $\mathcal{A}$ konstante Steigung in allen aktiven Zuständen, so hat die Sprache $L(\mathcal{A})$ \emph{einfaches Höhenverhalten (EHV)}
+    \subsection{Definition: Höhentransduktion}
+        $\Tau_m(w):\Sigmas\rightarrow\Sigmas_m, \Sigma_m=\Sigma\times\{0,\dots,m\}$, $\Delta_m(w)=\min(m,\Delta(w))$\\
+        $\Tau_m(w)=(w_1,\Delta_m(\epsilon))(w_2,\Delta_m(w_1))(w_3,\Delta_m(w_1w_2))\dots(w_n,\Delta(w_1\dots w_{n-1}))$\\[1mm]
+        Beispiel: $\Tau_2(aaba)=(a,0)(a,1)(b,2)(a,1)$\\[1mm]
+        $w\in\Sigmas_m$ heißt gültig, wenn $w\in F(\Tau_m(\Sigmas))$ ($F$ Faktor)
+    \subsection{Definition}
+        gegeben $m$-VCA $\mathcal{A}=(Q,q_0,E,\Sigma,\delta_0,\dots,\delta_m)$ dann $R_\mathcal{A}=L(M)$ mit endlichem Automat $M=(q,q_0,E,\Sigma_m,\delta)$ mit $\delta(q,(a,i))=\delta_i(q,a)$
+    \subsection{Lemma}
+        $\mathcal{A}$ ist $m$-VCA, dann $w\in L(\mathcal{A})\Leftrightarrow\Tau_m(w)\in R_\mathcal{A}$\\
+        Also: Wortproblem von $L(\mathcal{A})$ zweiteilbar:
+        \begin{itemize}
+            \item berechne $\Tau_m(w)$
+            \item teste ob in $R_\mathcal{A}$
+        \end{itemize}
+        Bisher: $\neg EHV\Rightarrow\not\in AC^0$ (da $\Tau_m\not\in AC^0$)\\
+        Jetzt: $EHV\Rightarrow \Tau_m\in AC^0$ berechenbar
+    \subsection{Satz}
+        EHV$\Rightarrow$ Höhenprädikat $H_m(x)$ in $FO[+]$ definierbar
+        \begin{itemize}
+            \item $w_{x=i}\models H_k(x)\Rightarrow\Delta(w_1\dots w_{i-1})=k$ falls $w\in\Sigmas$
+            \item $w_{x=i}\models H_k(x)\Leftrightarrow\Delta(w_1\dots w_{i-1})=k$ falls $w\in L$
+        \end{itemize}
+        \subsubsection{Beweisidee}
+            EHV $\overset{1.}{\rightarrow}$ Matching-Prädikat $\overset{2.}{\rightarrow}$ Höhenprädikat
+            \begin{enumerate}
+                \item $M(x,y)$ ist wahr, wenn well-matched zwischen $x$ und $y$\\
+                    Betrachte Fall große Höhe und aktive Zustände:\\
+                    \begin{itemize}
+                        \item Fasse Schleifen zusammen:\\
+                            Bsp.: $q_1\underbrace{q_2q_3q_2q_4q_2}_{q_2}q_5q_6\leadsto q_1q_2q_5q_6$
+                            (jeder Zustand höchstens $1\times\Rightarrow$ endliche Kombinationsmöglichkeiten $|Q|!$ für komprimierte Läufe)
+                        \item Jeder Zustand deckt Bereich mit konstanter Steigung ab $\Rightarrow$ Wort ist aufteilbar in höchstens $|Q|!$ Abschnitte konstanter Steigung
+                        \item Formel für $M(x,y)$: rate Lauf und verifiziere Steigungen ($n=|Q|$):\\
+                        $M(x,y)=x<y\wedge\Sigmapush(x)\wedge\Sigmapop(y)\wedge\\
+                        \bigvee\limits_{(q_1,\dots,q_n)\in Q^n}
+                        \left(\vphantom{\bigwedge\limits_{i=0}^{n-1}} %vertical space only
+                        \exists z_0,\dots,z_n\exists h_0,\dots,h_n: z_0=x\wedge z_n=y-1\wedge h_0=h_n\wedge\right.\\
+                        \left.\bigwedge\limits_{i=0}^{n-1}z_i\le z_{i+1}\wedge A_{q_{i+1}}(z_i,z_{i+1},h_i,h_{i+1},h_0)\right)$ (Definition von $A_{q_{i+1}}$: Paper)
+                    \end{itemize}
+
+            \end{enumerate}

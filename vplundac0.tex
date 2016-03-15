@@ -137,5 +137,62 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
                         \exists z_0,\dots,z_n\exists h_0,\dots,h_n: z_0=x\wedge z_n=y-1\wedge h_0=h_n\wedge\right.\\
                         \left.\bigwedge\limits_{i=0}^{n-1}z_i\le z_{i+1}\wedge A_{q_{i+1}}(z_i,z_{i+1},h_i,h_{i+1},h_0)\right)$ (Definition von $A_{q_{i+1}}$: Paper)
                     \end{itemize}
-
             \end{enumerate}
+\section{Der reguläre Anteil einer VCL}
+    $\exists \mathcal{A}:R_\mathcal{A}\in AC^0\Rightarrow \exists FO[reg]$-Formel\\
+    $\forall\mathcal{A}:R_\mathcal{A}\not\in AC^0\Rightarrow L(\mathcal{A})\not\in AC^0$
+    \subsection{Beispiel}
+        $L=\{wb^{|w|}\mid w\in\{a_1,a_2\},|w|_{a_1}\equiv 0\pmod 2\}$\\
+        $\mathcal{A}$ mit $L(\mathcal{A})=L$, dann ``$R_\mathcal{A}=Parity(a_1,a_2)b^*$''\\
+        $L'=L\cap\Sigma^{10}\in AC^0$ $(L(R_{\mathcal{A}'})=L')$\\
+        aber $R_{\mathcal{A}'}$ könnte:
+        \begin{itemize}
+            \item endlich sein $\Rightarrow R_{\mathcal{A}'}\in AC^0$
+            \item ``$R_\mathcal{A}=Parity(a_1,a_2)b^{10}$''$\Rightarrow R_{\mathcal{A}'}\not\in AC^0$
+        \end{itemize}
+        $\Rightarrow$ Lösung: Normalform\\
+        Problem: Schleife, die $R_\mathcal{A}$ komplex macht aber unnötig ist.
+    \subsection{Definition (informell)}
+        $\mathcal{A}$ heißt Schleifen-normal, wenn jeder Schleife synchron pumpbar ist.
+    \subsection{Lemma}
+        Für jeden VCA $\mathcal {A}$ existiert Schleifen-normaler Automat $\mathcal{A}'$ mit $L(\mathcal{A})=L(\mathcal{A}')$
+    \subsection{Lemma}
+        Ist $\mathcal{A}$ Schleifen-normaler $m$-VCA, dann: $\exists t>0\exists G\subseteq\Sigma^t_m$ mit $G^*\subseteq F(\Tau_m(\Sigmas))$, sodass $\eta_{R_\mathcal{A}}(G)$ nicht-triviale Gruppe enthält, dann $L(\mathcal{A})\not\in AC^0$ (vgl. quasi-aperiodisch)
+    \subsection{Satz (Wdh.)}
+        Ist $L$ regulär, dann $L\in AC^0\Leftrightarrow\forall t>0\forall G\subseteq\Sigma^t:\eta_L(G)$ hat nur triviale Gruppen $\Leftrightarrow L\in FO[reg]$
+    \subsection{Lemma}
+        $\forall t>0\forall G\subseteq\Sigma_m^t$ mit $G^*\subseteq F(\Tau_m(\Sigmas))$, so dass $\eta_{R_\mathcal{A}}$ hat nur triviale Teilgruppen $\Rightarrow\exists FO[reg]$-Formel $\varphi$ mit $L(\varphi)=\cap\Tau_m(\Sigmas)=R_\mathcal{A}\cap\Tau_m(\Sigmas)$
+    \subsection{Satz}
+        Sei $\mathcal{A}$ ein Schleifen-normaler $m$-VCA für $L=L(\mathcal{A})$.\\
+        $L\in AC^0\Leftrightarrow L$ hat EHV und $\forall t>0\forall G\subseteq\Sigma_m^t$ mit $G^*\subseteq F(\Tau_m(\Sigmas))$ hat $\eta_{R_\mathcal{A}}$ nur triviale Teilgruppen.
+        \subsubsection{Beweis}
+            Beginne mit $FO[reg]$-Formel $\varphi$ mit $\underbrace{L(\varphi)}_{\subseteq\Sigmas_m}\cap\Tau_m(\Sigmas)=R_\mathcal{A}\cap\Tau_m(\Sigmas)$.\\
+            $Q_{(a,i)}x$-Prädikate in $\varphi$ ersetzen durch
+            \begin{itemize}
+                \item $(Q_ax\wedge H_ix)$, falls $i<m$
+                \item $(Q_ax\wedge H_{\geq m}x)$, falls $i\geq m$
+            \end{itemize}\qed\\
+            Alternative Sichtweise: $\Tau_m^{-1}(L(\varphi))=\Tau_m^{-1}(R_\mathcal{A})$\\
+            %als Schaltkreis...
+    \subsection{Satz}
+        Gegeben $\mathcal{A}$, dann ist es entscheidbar, ob $L(\mathcal{A})\in AC^0$
+        \subsubsection{Beweis}
+            Betrachte Schleifen-normalen Automaten $\mathcal{A}'$
+            \begin{itemize}
+                \item Überprüfe EHV: $\forall q\in Q:$ ``$q$ aktiv $\Rightarrow$ konstante Steigung''
+                \item konstante Steigung: teste $w\in\Sigma^{\le|Q|}$, die durch $q$ schleifen. Haben alle die gleiche Steigung?
+                \item aktiv: finde $x$ mit $\Delta(x)>m+|Q|$ und $y$ mit $xy\in L(\mathcal{A})$ mit $y=y'y''$ mit $\Delta(y')>-|Q|$
+                \begin{itemize}
+                    \item ``$x$ finden'' auf Leerheitsproblem für VCL reduzierbar
+                    \item $y:\Delta(x)\cdot|Q|$ maximale Länge
+                \end{itemize}
+                \item regulärer Anteil: analog quasi-aperiodisch für reguläre Sprachen.\qed
+            \end{itemize}
+\section{Anmekung}
+    $VPL\cap AC^0$ noch offen
+    \subsection{Beispiel}
+        \begin{itemize}
+            \item $S\rightarrow a_1Sb|a_2Sbc|\epsilon$
+            \item $S\rightarrow aSbc|acSb|\epsilon$
+        \end{itemize}
+        vgl. $S\rightarrow aSb|aSbc|\epsilon$ ($\in VCL,\ \not\in AC^0$)

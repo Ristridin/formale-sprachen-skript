@@ -16,9 +16,9 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
         \item VPL auch $NC^1$-vollständig, also auch $VCL$.
     \end{itemize}
 \section{Definition}
-    $k-VCA:\ \mathcal{A} = (Q, q_0, E, \Sigma, \delta_0, \dots, \delta_k)$ mit $\delta_i = Q \times \Sigma \to \Sigma$ \\($i$ je nach Ebene, ab Ebene $m$ $\delta_k$)\\[2mm]
+    $m-VCA:\ \mathcal{A} = (Q, q_0, E, \Sigma, \delta_0, \dots, \delta_m)$ mit $\delta_i = Q \times \Sigma \to \Sigma$ \\($i$ je nach Ebene, für Ebene $\geq m$ immer $\delta_m$)\\[2mm]
     Akzeptanzkriterium: Endzustand in Lauf erreichbar\\
-    $\delta_{min}(m, \Delta(w))$ wird angewandt, nachdem $w$ gelesen wurde. $\Delta(w) = |w|_{call} - |w|_{return}$\\
+    $\delta_{min(m, \Delta(w))}$ wird angewandt, nachdem $w$ gelesen wurde. $\Delta(w) = |w|_{call} - |w|_{return}$\\
     \begin{tikzpicture}
         \draw[->] (0,0) -- (0,3);
         \node at (0,1) [anchor=east] (m) {$\delta_m$};
@@ -72,7 +72,7 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
     $\rightarrow$ Variable Steigung\\
     Bsp. kann verallgemeinert werden
     \subsection{Definition}
-        Zustand q hat \underline{konstante Steigung}, wenn $\exists \alpha \in \mathbb{Q}$ ($\alpha$: Steigung) $\forall w \in \Sigma^*$ mit $$ (q,h_1) \xrightarrow{w} (q,h_2)\text{ und}$$
+        Zustand q hat \underline{konstante Steigung}, wenn $\exists \alpha \in \mathds{Q}$ ($\alpha$: Steigung) $\forall w \in \Sigma^*$ mit $$ (q,h_1) \xrightarrow{w} (q,h_2)\text{ und}$$
         $\forall w'$ Präfix von $w: h_1 + \Delta(w') \geq m$ gilt:
         $$h_2 = \alpha|w|+h_1 \text{ Steigung}$$
         \begin{tikzpicture}
@@ -92,7 +92,7 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
         Äquivalent (``Korridor''): $$\exists\alpha\in\mathds{Q},\gamma\in\mathds{N}\forall w\in\Sigmas,w'\text{ Präfix von }w:\alpha|w'|-\gamma\le\Delta(w')\le\alpha|w'|+\gamma$$
 \section{Einfaches Höhenverhalten}
     \subsection{Definition: aktiver Zustand}
-        Zustand $q$ heißt \emph{aktiv}, wenn $\exists w\in L(\mathcal{A})$ und Position $i<j$, sodass $(q_0,0)w_1\dots w_i(q,h),h>m+|Q|$ und $h-\Delta(w_1\dots w_j)>|Q|$
+        Zustand $q$ heißt \emph{aktiv}, wenn $\exists w\in L(\mathcal{A})$ und Position $i<j$, sodass $(q_0,0)\overset{w_1\dots w_i}{\longrightarrow}(q,h),h>m+|Q|$ und $h-\Delta(w_1\dots w_j)>|Q|$
     \subsection{Lemma}
         Für $L=L(\mathcal{A})$, sodass $\mathcal{A}$ aktiven Zustand ohne konstante Steigung hat, dann $L\not\in AC^0$ ($TC^0$-schwer)\\
         Beweis: verallgemeinertes Beispiel von oben.
@@ -104,7 +104,7 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
         Beispiel: $\Tau_2(aaba)=(a,0)(a,1)(b,2)(a,1)$\\[1mm]
         $w\in\Sigmas_m$ heißt gültig, wenn $w\in F(\Tau_m(\Sigmas))$ ($F$ Faktor)
     \subsection{Definition}
-        gegeben $m$-VCA $\mathcal{A}=(Q,q_0,E,\Sigma,\delta_0,\dots,\delta_m)$ dann $R_\mathcal{A}=L(M)$ mit endlichem Automat $M=(q,q_0,E,\Sigma_m,\delta)$ mit $\delta(q,(a,i))=\delta_i(q,a)$
+        gegeben $m$-VCA $\mathcal{A}=(Q,q_0,E,\Sigma,\delta_0,\dots,\delta_m)$ dann $R_\mathcal{A}=L(M)$ mit endlichem Automat $M=(Q,q_0,E,\Sigma_m,\delta)$ mit $\delta(q,(a,i))=\delta_i(q,a)$
     \subsection{Lemma}
         $\mathcal{A}$ ist $m$-VCA, dann $w\in L(\mathcal{A})\Leftrightarrow\Tau_m(w)\in R_\mathcal{A}$\\
         Also: Wortproblem von $L(\mathcal{A})$ zweiteilbar:
@@ -148,16 +148,17 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
         aber $R_{\mathcal{A}'}$ könnte:
         \begin{itemize}
             \item endlich sein $\Rightarrow R_{\mathcal{A}'}\in AC^0$
-            \item ``$R_\mathcal{A}=Parity(a_1,a_2)b^{10}$''$\Rightarrow R_{\mathcal{A}'}\not\in AC^0$
+            \item ``$R_{\mathcal{A}'}=Parity(a_1,a_2)b^{10}$''$\Rightarrow R_{\mathcal{A}'}\not\in AC^0$
         \end{itemize}
         $\Rightarrow$ Lösung: Normalform\\
         Problem: Schleife, die $R_\mathcal{A}$ komplex macht aber unnötig ist.
     \subsection{Definition (informell)}
-        $\mathcal{A}$ heißt Schleifen-normal, wenn jeder Schleife synchron pumpbar ist.
+        $\mathcal{A}$ heißt Schleifen-normal, wenn jede Schleife synchron pumpbar ist.
     \subsection{Lemma}
         Für jeden VCA $\mathcal {A}$ existiert Schleifen-normaler Automat $\mathcal{A}'$ mit $L(\mathcal{A})=L(\mathcal{A}')$
     \subsection{Lemma}
-        Ist $\mathcal{A}$ Schleifen-normaler $m$-VCA, dann: $\exists t>0\exists G\subseteq\Sigma^t_m$ mit $G^*\subseteq F(\Tau_m(\Sigmas))$, sodass $\eta_{R_\mathcal{A}}(G)$ nicht-triviale Gruppe enthält, dann $L(\mathcal{A})\not\in AC^0$ (vgl. quasi-aperiodisch)
+        Ist $\mathcal{A}$ Schleifen-normaler $m$-VCA, dann:\\
+        $\exists t>0\ \exists G\subseteq\Sigma^t_m$ mit $G^*\subseteq F(\Tau_m(\Sigmas))$, sodass $\eta_{R_\mathcal{A}}(G)$ nicht-triviale Gruppe enthält, dann $L(\mathcal{A})\not\in AC^0$ (vgl. quasi-aperiodisch)
     \subsection{Satz (Wdh.)}
         Ist $L$ regulär, dann $L\in AC^0\Leftrightarrow\forall t>0\forall G\subseteq\Sigma^t:\eta_L(G)$ hat nur triviale Gruppen $\Leftrightarrow L\in FO[reg]$
     \subsection{Lemma}

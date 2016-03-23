@@ -51,16 +51,17 @@
 \section{Beweis zum Satz von Schützenberger}
     Zu zeigen: ist $Synt(L)$ aperiodisch, so ist $L$ sternfrei.\\
     $Synt(L)$ endlich, da $L\in \textsc{Reg}$
-    Sei $\varphi:\Sigmas\rightarrow M=Synt(L)$ ein Monomorphismus mit $M$ aperiodisch. Da $\varphi\ L$ erkennt, existiert eine endliche Teilmenge $P\subseteq M$ mit $\varphi^{-1}(P)=\bigcup\limits_{m\in P}\varphi^{-1}(m)=M$. Wir zeigen $\varphi^{-1}(\{m\})$ ist sternfrei $\forall m\in M$:\\
+    Sei $\varphi:\Sigmas\rightarrow M=Synt(L)$ ein Monomorphismus mit $M$ aperiodisch. Da $\varphi\ L$ erkennt, existiert eine endliche Teilmenge $P\subseteq M$ mit $\varphi^{-1}(P)=\bigcup\limits_{m\in P}\varphi^{-1}(m)=L$. Wir zeigen $\varphi^{-1}(\{m\})$ ist sternfrei $\forall m\in M$:\\
     Induktion über $r(m)=|M\setminus MmM|$:
     \begin{itemize}
-        \item[$r(m)=0$:] Dann ist $M=MmM$ (Differenz leer, abgeschlossen). Damit gibt es $p,q\in M$ mit $1=pmq=pm1q=pm=p1m=m$. Folglich: $\varphi^{-1}(m)=\varphi^{-1}(1)\overset{(*)}{=}\{a\in\Sigma\mid\varphi(a)=1\}^*$, denn ist $w\in \Sigmas$ mit $|w|>1$ und $w=ua,\ a\in \Sigma$, dann ist $$\varphi(w)=\varphi(ua)=1\Leftrightarrow \varphi(u)\varphi(a)=1\Leftrightarrow \varphi(u)1\varphi(a)=1\Leftrightarrow \varphi(u)=1\wedge \varphi(a)=1$$
+        \item[$r(m)=0$:] Dann ist $M=MmM$ (Differenz leer, abgeschlossen). Damit gibt es $p,q\in M$ mit $1=pmq=pm1q=pm=p1m=m$ (nach Lemma~\ref{sub:sch-lemma-1}).\\
+        Folglich: $\varphi^{-1}(m)=\varphi^{-1}(1)\overset{(*)}{=}\{a\in\Sigma\mid\varphi(a)=1\}^*$, denn ist $w\in \Sigmas$ mit $|w|>1$ und $w=ua,\ a\in \Sigma$, dann ist $$\varphi(w)=\varphi(ua)=1\Leftrightarrow \varphi(u)\varphi(a)=1\Leftrightarrow \varphi(u)1\varphi(a)=1\Leftrightarrow \varphi(u)=1\wedge \varphi(a)=1$$
         $(*)$ folgt durch Induktion.\\
         Ist $B\subseteq \Sigma$, so ist $B^*$ sternfrei: $B^*=\overline{\overline{\emptyset}\overline{B}\overline{\emptyset}}$. Damit ist $\varphi^{-1}(m)$ sternfrei.
         \item[$r(m)>0$:] Wir zeigen: $\varphi^{-1}(m)=(U\Sigmas\cap \Sigmas V)\setminus(\Sigmas C\Sigmas\cup \Sigmas W\Sigmas)=K$ mit:
         \begin{itemize}
-            \item $U=\bigcup\limits_{n,a)\in E} \varphi^{-1}(n)a\Sigmas$
-            \item $V=\bigcup\limits_{n,a)\in F} \Sigmas a\varphi^{-1}(n)$
+            \item $U=\bigcup\limits_{(n,a)\in E} \varphi^{-1}(n)a\Sigmas$
+            \item $V=\bigcup\limits_{(n,a)\in F} \Sigmas a\varphi^{-1}(n)$
             \item $C=\{a\in\Sigma\mid m\not\in M\varphi(a)M\}$
             \item $W=\bigcup\limits_{(a,n,b)\in G}\Sigmas a\varphi^{-1}(n)b\Sigmas$
             \item $E=\{(n,a)\in M\times \Sigma\mid n\varphi(a)Rm,\ n\not\in mM\}$
@@ -99,7 +100,7 @@
             $\Rightarrow m\in MsM$, letztlich $K\subseteq \varphi^{-1}(m)$
         \end{itemize}
         \begin{itemize}
-            \item $u,V,W,C$ sternfrei
+            \item $U,V,W,C$ sternfrei
             \begin{itemize}
                 \item $C$ sternfrei, klar da endlich
                 \item zu $U$ ($V$ analog):\\

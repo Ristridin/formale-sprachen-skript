@@ -9,7 +9,7 @@
         \subsubsection{Beispiel}
             $\{ab\}^*\{bba\}^\omega\cup\{aa\}^\omega$
             \begin{itemize}
-                \item Es gibt keine letztes Zeichen
+                \item Es gibt kein letztes Zeichen
                 \item Konkatenation ist eingeschränkt
             \end{itemize}
 \section{Definition: $\omega$-reguläre Sprachen}
@@ -61,14 +61,14 @@
                     \draw (q1) edge[loop above] node[above]{1} (q1);
                     \draw (q1) edge[bend left] node[below]{0} (q0);
                 \end{tikzpicture}
-            \\\vspace*{-2cm}\\\hspace*{10cm} $\mathcal{F}=\{\{q_1\},\{q_1,q_2\}\}$\vspace{1cm}
+            \\\vspace*{-2cm}\\\hspace*{10cm} $\mathcal{F}=\{\{q_0\},\{q_0,q_1\}\}$\vspace{1cm}
         \subsubsection{Rabin}
             $Acc=\Omega\in(2^Q\times 2^Q)^*$\\
             $\Omega=(E_1,F_1),(E_2,F_2),\dots$\\
-            $x\in L(\mathcal{A})\Leftrightarrow\bigvee\limits_{i=1}^n\left(In(\rho)\cap E_i=\empty\wedge In(\rho)\cap F_i\not=\emptyset\right)$
+            $x\in L(\mathcal{A})\Leftrightarrow\bigvee\limits_{i=1}^n\left(In(\rho)\cap E_i=\emptyset\wedge In(\rho)\cap F_i\not=\emptyset\right)$
         \subsubsection{Streett}
             $Acc$ wie bei Rabin, aber:\\
-            $x\in L(\mathcal{A})\Leftrightarrow\bigwedge\limits_{i=1}^n\left(In(\rho)\cap E_i\not=\empty\vee In(\rho)\cap F_i=\emptyset\right)$
+            $x\in L(\mathcal{A})\Leftrightarrow\bigwedge\limits_{i=1}^n\left(In(\rho)\cap E_i\not=\emptyset\vee In(\rho)\cap F_i=\emptyset\right)$
     \subsection{Satz}
         Folgende Modelle sind gleichmächtig: Muller,Rabin,Streett, nicht-deterministischer Büchi\\
         Deterministischer Büchi ist echt schwächer. Trennbeispiel:\\
@@ -134,8 +134,8 @@
             \item System: endlich, nicht-terminierend
             \item Kripke-Struktur $\rightarrow$ Büchi-Automat
             \item Eigenschaft: z.B. LTL-Formel $\varphi$
-            \item Aufgabe: gilt $L(\mathcal{A}\subseteq L(\varphi)$\\
-            $\Leftrightarrow L(\mathcal{A})\cap\hat{L(\varphi)}=\emptyset$\\
+            \item Aufgabe: gilt $L(\mathcal{A})\subseteq L(\varphi)$\\
+            $\Leftrightarrow L(\mathcal{A})\cap\widehat{L(\varphi)}=\emptyset$\\
             $\Leftrightarrow \underbrace{L(\mathcal{A})\cap L(\neg\varphi)}_{\text{Büchi-Automat}}=\emptyset$
             \item $\rightarrow$ Leerheitstest für Büchi-Automaten:
             \begin{enumerate}

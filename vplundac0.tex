@@ -181,11 +181,13 @@ Quelle:\\ \href{http://drops.dagstuhl.de/opus/volltexte/2015/4944/pdf/44.pdf}{Vi
             Betrachte Schleifen-normalen Automaten $\mathcal{A}'$
             \begin{itemize}
                 \item Überprüfe EHV: $\forall q\in Q:$ ``$q$ aktiv $\Rightarrow$ konstante Steigung''
-                \item konstante Steigung: teste $w\in\Sigma^{\le|Q|}$, die durch $q$ schleifen. Haben alle die gleiche Steigung?
-                \item aktiv: finde $x$ mit $\Delta(x)>m+|Q|$ und $y$ mit $xy\in L(\mathcal{A})$ mit $y=y'y''$ mit $\Delta(y')>-|Q|$
                 \begin{itemize}
-                    \item ``$x$ finden'' auf Leerheitsproblem für VCL reduzierbar
-                    \item $y:\Delta(x)\cdot|Q|$ maximale Länge
+                    \item konstante Steigung: teste $w\in\Sigma^{\le|Q|}$, die durch $q$ schleifen. Haben alle die gleiche Steigung?
+                    \item aktiv: finde $x$ mit $\Delta(x)>m+|Q|$ und $y$ mit $xy\in L(\mathcal{A})$ mit $y=y'y''$ mit $\Delta(y')>-|Q|$
+                    \begin{itemize}
+                        \item ``$x$ finden'' auf Leerheitsproblem für VCL reduzierbar
+                        \item $y:\Delta(x)\cdot|Q|$ maximale Länge
+                    \end{itemize}
                 \end{itemize}
                 \item regulärer Anteil: analog quasi-aperiodisch für reguläre Sprachen.\qed
             \end{itemize}

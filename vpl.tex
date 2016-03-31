@@ -196,12 +196,12 @@ Alur, Madhusudan 2004 / Mehlhorn 1980 (input driven PDA)
 	$A_1\rightarrow_G^* a_1\dots a_kA_{i1}\dots A_{ir} \text{ mit Produktionen } (\Pi_{p1},\dots,\Pi_{pk})\\
 	\Leftrightarrow$
 	\begin{enumerate}[(a)]
-		\item $\varphi(a_1\dots a_k)=x_1cy_1cz_1d\dots x_kcy_kcz_kd$ \\\textit{$x_i, z_i$: nicht benutzte Produktionen}
+		\item $\varphi(a_1\dots a_k)=x_1cy_1cz_1d\dots x_kcy_kcz_kd$ \\$x_i, z_i$: nicht benutzte Produktionen
 		\item $y_1\dots y_k \in Prefix(\$\mathds{D}_2)$
 		\item $\mu(y_1\dots y_k)= \$a_1a_2^{i_r}a_1\dots a_1a_2^{i_1}a_2$
 	\end{enumerate}
 	also $A_1\rightarrow^* a_1\dots a_k \Leftrightarrow (a) \wedge y_1\dots y_n \in \$ \mathds{D}_2 \wedge \mu(y_1\dots y_n)=\$$
-\subsubsection{Beweis}durch Induktion über K
+\subsubsection{Beweis}durch Induktion über $k$
     \begin{itemize}
         \item[IA:] $ A_1\rightarrow_G^1 a_1A_{i_1}\dots A_{i_r} \text{ dann }\\
         \exists \Pi =A_1\rightarrow a_1A_{i_1}\dots A_{i_r} \in P_{a_1} \\
